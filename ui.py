@@ -66,6 +66,3 @@ def main():
     root.title("")
     MainWindow(root).grid()
     root.mainloop()
-
-if __name__ == "__main__":
-    main()
