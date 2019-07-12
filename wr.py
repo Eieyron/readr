@@ -1,7 +1,9 @@
-from cnt import processSingle
+import cnfg
+
+from cnt import process_single
 from mcdnn import *
 
-def processList(paper, section_cols, char_join):
+def process_image_list(paper, section_cols, char_join):
 	for i in range(len(paper)):
 		section = paper[i]
 		
@@ -10,33 +12,28 @@ def processList(paper, section_cols, char_join):
 			
 			for k in range(len(field)):
 				character = field[k]
-				field[k] = str(readCharacter(models, character)[2])
+				field[k] = str(read_character(models, character)[2])
 			
 			section[j] = ''.join(field)
 		
-		paper[i] = [char_join[i].join(section[x:x+section_cols[i]]) for x in range(0, len(section), section_cols[i])]
-	paper = processList(paper, FORM_SHAPE, FIELD_JOIN)
-	writeList(paper)
+		paper[i] = [char_join[i].join(filter(None, section[x:x+section_cols[i]])) for x in range(0, len(section), section_cols[i])]
+
 	return paper
 
-def writeList(paper, show=True):
+def print_list(paper, show=True):
 	for i in range(len(paper)):
 		section = paper[i]
-		
-		if (i > 0) and (FORM_LABEL[i-1] == FORM_LABEL[i]): k = len(section[i-1])
-		else: k = 1
-		
+
+		k = cnfg.number_offset[i]
 		for j in range(len(section)):
 			field = section[j]
-			print(FORM_LABEL[i]+str(k)+'. '+field)
+			print(cnfg.form_labels[i]+str(k)+'. '+field)
 			k = k + 1
 
-if __name__ == '__main__':
-	from settings import *
-	
-	mean_px, std_px = loadModelVars()
-	models = loadModels(n=1)
+if __name__ == '__main__':	
+	mean_px, std_px = load_model_vars()
+	models = load_models(n=1)
 
-	paper = processSingle("./../images/w2.png")
-	paper = processList(paper, FORM_SHAPE, FIELD_JOIN)
-	writeList(paper)
+	paper = process_single("./../images/w2.png")
+	paper = process_image_list(paper, cnfg.form_shape, cnfg.field_join)
+	print_list(paper)

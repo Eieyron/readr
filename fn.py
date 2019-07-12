@@ -7,11 +7,11 @@ import numpy as np
 # src <- to get center of mass from
 # nsize <- size of input image after size normalization
 # lsize <- size of the larger image input image will be centered
-def centerByMass(src, nsize=20, lsize=28):
+def center_by_mass(src, nsize=20, lsize=28):
     # do this only if lsize is larger than nsize, duh
     if (lsize > nsize):
         # normalize input img
-        img = padResizeToSquare(src, nsize)
+        img = reshape_to_square(src, nsize)
 
         # invert color, then get contour
         img = cv2.bitwise_not(img)
@@ -80,7 +80,7 @@ def centerByMass(src, nsize=20, lsize=28):
 # w, h <- width, height
 # padding <- padding, can be + or -
 # replace_pad <- just repads the image; for replacing border artifacts; only for negative padding
-def cropImageByOrigin(src, x, y, w, h, padding=0, replace_pad=False):
+def crop_by_origin(src, x, y, w, h, padding=0, replace_pad=False):
     p = padding
     if (replace_pad == True):
         b = abs(p)
@@ -97,7 +97,7 @@ def cropImageByOrigin(src, x, y, w, h, padding=0, replace_pad=False):
 # params:
 # src <- img to be resized
 # s <- w, h of returned square
-def padResizeToSquare(src, s):
+def reshape_to_square(src, s):
     h, w= src.shape[:2]
 
     if (w > h):
@@ -115,7 +115,7 @@ def padResizeToSquare(src, s):
 # params:
 # img <- img to be processed
 # show <- if output of every process should be shown (default=False)
-def preprocessImage(img, show=False):
+def preprocess_image(img, show=False):
     if (show == True):
         cv2.imshow("original img", img)
         cv2.waitKey(0)

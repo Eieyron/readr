@@ -7,14 +7,14 @@ import tensorflow as tf
 from collections import  Counter
 from tensorflow import keras
 
-def loadModelVars():
+def load_model_vars():
 	return pickle.load(open('./dev.pkl', 'rb'))
 
 # hardcoded lol
 # n <- number of models to be loaded.
 #		more accurate but slower if higher
 #		max of 10.
-def loadModels(n=10, show=False):
+def load_models(n=10, show=False):
 	models = []
 	for i in range(n):
 		model = keras.models.load_model('./models/w_m'+str(i)+'_eF.h5')
@@ -27,7 +27,7 @@ def loadModels(n=10, show=False):
 
 # preprocess input character to fit into model input
 # character <- img to be preprocessed
-def preprocessCharacter(character):
+def preprocess_character(character):
 	# invert
 	character = cv2.bitwise_not(character)
 
@@ -46,8 +46,8 @@ def preprocessCharacter(character):
 # predict input character with input models
 # models <- the models to read the character with
 # character <- img to be recognized
-def readCharacter(models, character):
-	character = preprocessCharacter(character)
+def read_character(models, character):
+	character = preprocess_character(character)
 
 	predictions = []
 	predicted_values = []
