@@ -135,7 +135,8 @@ def preprocess_image(img, show=False):
         cv2.destroyAllWindows()
 
     img = cv2.bitwise_not(img)
-    
+
+    # too destructive    
     # # remove "holes"
     # img = cv2.morphologyEx(img, cv2.MORPH_OPEN, (5,5))
     # if (show == True):

@@ -4,20 +4,19 @@ import pickle
 import numpy as np
 import tensorflow as tf
 
-from collections import  Counter
+from collections import Counter
 from tensorflow import keras
 
 def load_model_vars():
-	return pickle.load(open('./dev.pkl', 'rb'))
+	return pickle.load(open('./models/vars.pkl', 'rb'))
 
-# hardcoded lol
 # n <- number of models to be loaded.
 #		more accurate but slower if higher
 #		max of 10.
 def load_models(n=10, show=False):
 	models = []
 	for i in range(n):
-		model = keras.models.load_model('./models/w_m'+str(i)+'_eF.h5')
+		model = keras.models.load_model('./models/m'+str(i)+'eF.h5')
 		models.append(model)
 		if show == True:
 			print("Model "+str(i)+" loaded")

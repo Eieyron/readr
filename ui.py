@@ -1,7 +1,5 @@
-from tkinter import filedialog
 from tkinter import *
-
-# from fn import * 
+from tkinter import filedialog
 
 class MainWindow(Frame):
     

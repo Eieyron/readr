@@ -2,8 +2,11 @@ import configparser
 import csv
 import os
 
-def get_form_format(file='./format.csv'):
-	with open('./format.csv', newline='') as csvfile:
+from modules.ai import load_model_vars
+
+def get_form_format():
+	file = form_format
+	with open(file, newline='') as csvfile:
 		row = list(csv.reader(csvfile, delimiter = ','))
 
 		globals()['form_labels'] = row[0]
@@ -11,12 +14,41 @@ def get_form_format(file='./format.csv'):
 		globals()['field_join'] = row[2]
 		globals()['number_offset'] = [int(i) for i in row[3]]
 
+def get_form_keys():
+	dct = {}
+	file = form_keys
+	with open(file, newline='') as csvfile:
+		lst = list(csv.reader(csvfile, delimiter = ','))
+
+		# transpose list
+		lst = [list(i) for i in zip(*lst)]
+
+		# map item numbers to column names
+		for section in lst:
+			section_label = section.pop(0)
+			for i in range(len(section)):
+				# filter out empty cells/fields
+				if section[i] != '':
+					dct[section_label+str(i+1)] = section[i]
+
+		
+		globals()['column_names'] = dct
+
 def load_config(file_ini='./settings.ini'):
 	config = configparser.SafeConfigParser()
 
 	if os.path.isfile(file_ini):
 		config.read(file_ini)
-		
+
+		sect = 'MODEL'
+		globals()['num_models'] = config.getint(sect, 'num_models')
+
+		# appended './../' in front since 
+		# user might enter the file string relative to the settings.ini location
+		sect = 'FILE'
+		globals()['form_format'] = config.get(sect, 'form_format')
+		globals()['form_keys'] = config.get(sect, 'form_keys')
+
 		sect = 'ORIENTATION'
 		globals()['is_landscape'] = config.getboolean(sect, 'is_landscape')
 
@@ -92,10 +124,12 @@ def load_defaults():
 		globals()['show_character'] = False
 
 def load_settings():
-	get_form_format()
 	load_config()
+	get_form_format()
+	get_form_keys()
 
 load_settings()
+mean_px, std_px = load_model_vars()
 
 # MIN_RATIO_REGION = 0.5
 # MAX_RATIO_REGION = 0.99
