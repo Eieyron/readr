@@ -1,4 +1,7 @@
 import csv
+import os
+
+import pandas as pd
 
 import modules.config as config
 
@@ -32,6 +35,7 @@ def read_values(paper):
 
 def map_values(paper, show=False):
 	# map fields to number, store in num_field
+	# 'A1': 42
 	num_field = {}
 	for i in range(len(paper)):
 		section = paper[i]
@@ -46,19 +50,21 @@ def map_values(paper, show=False):
 			k = k + 1
 
 	# map numbered fields to column names
-	row = {}
-	for key in config.column_names:
-		row[config.column_names[key]]=num_field[key]
-
+	row = []
+	for i in range(len(config.column_names)):
+		row.append([config.column_names[i][1], num_field[config.column_names[i][0]]])
+	
 	if (show == True):
-		for key, val in row.items():
-			print(key+": "+val)
+		for i in row:
+			print(i)
 
 	return row
 
-def write_rows(file_csv, data):
-	with open(file_csv, 'a') as csvfile:
-		fields = config.column_names.values()
-		writer = csv.DictWriter(csvfile, fieldnames=fields)
-		writer.writeheader()
-		writer.writerows(data)
+
+def write_rows(file_csv, row):
+	df = pd.DataFrame(data)
+	df.to_csv(file_csv, index=False, mode='a+')
+
+	ret = "Wrote to file successfully"
+	return ret
+

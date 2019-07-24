@@ -11,7 +11,7 @@ import modules.config as config
 from modules.config import mean_px
 from modules.config import std_px
 
-from modules.extract import process_single
+from modules.extract import process_batch
 
 from modules.model import models
 
@@ -28,10 +28,10 @@ def main():
 						help='csv file to append read data; will be created if not found'
 						)
 
-	parser.add_argument('--img_file', 
+	parser.add_argument('--img_dir', 
 						type=str, 
 						default='', 
-						help='image file of document to be read; jpg or png formats only'
+						help='directory of document image files to be read; must contain only document images of jpg or png formats only'
 						)
 	
 	args = parser.parse_args()
@@ -42,16 +42,16 @@ def process(args):
 	if (args.csv_file).endswith('.csv') == False:
 		sys.stdout.write('Invalid csv_file argument. Must be a .csv file.')
 
-	elif ((args.img_file).endswith('.png') or (args.img_file).endswith('.jpg')) == False:
-		sys.stdout.write('Invalid img_file argument. Must be a .png or .jpg file.')
+	elif os.path.isdir(args.img_dir) == False:
+		sys.stdout.write('Invalid img_dir argument. Must be an existing directory')
 	
 	else:	
-		sys.stdout.write('1/5 Successfully loaded img_file: {} \n'.format(args.img_file))
+		sys.stdout.write('1/5 Successfully loaded img_dir: {} \n'.format(args.img_dir))
 		sys.stdout.write('2/5 Successfully loaded csv_file: {} \n'.format(args.csv_file))
 
 		# process image
-		paper = process_single(args.img_file)
-		sys.stdout.write('3/5 Extracted fields\n')
+		batch = process_batch(args.img_dir)
+		sys.stdout.write('3/5 Extracted fields from {}\n'.format(len(batch)))
 
 		# read and map fields
 		values = read_values(paper)
@@ -65,4 +65,5 @@ def process(args):
 
 if __name__ == '__main__':
 	main()
+
 
