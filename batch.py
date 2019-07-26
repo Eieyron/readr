@@ -1,12 +1,6 @@
 import argparse
-import logging
 import os
 import sys
-
-# suppress all logging from tensorflow
-logging.getLogger('tensorflow').disabled = True
-
-import modules.config as config
 
 from modules.config import mean_px
 from modules.config import std_px
@@ -18,6 +12,7 @@ from modules.model import models
 from modules.write import read_values 
 from modules.write import map_values 
 from modules.write import write_rows
+
 
 def main():
 	parser = argparse.ArgumentParser()
@@ -37,12 +32,13 @@ def main():
 	args = parser.parse_args()
 	process(args)
 
+
 def process(args):
 	# check if args are invalid
-	if (args.csv_file).endswith('.csv') == False:
+	if not args.csv_file.endswith('.csv'):
 		sys.stdout.write('Invalid csv_file argument. Must be a .csv file.')
 
-	elif os.path.isdir(args.img_dir) == False:
+	elif not os.path.isdir(args.img_dir):
 		sys.stdout.write('Invalid img_dir argument. Must be an existing directory')
 	
 	else:	
@@ -51,17 +47,22 @@ def process(args):
 
 		# process image
 		batch = process_batch(args.img_dir)
-		sys.stdout.write('3/5 Extracted fields from {}\n'.format(len(batch)))
+		sys.stdout.write('3/5 Extracted fields from {} image files\n'.format(len(batch)))
 
-		# read and map fields
-		values = read_values(paper)
-		row = map_values(paper, True)
+		data = []
+		for paper in batch:
+			# read and map fields
+			values = read_values(paper)
+			row = map_values(paper)
+			data.append(row)
+
 		sys.stdout.write('4/5 Extracted values from fields\n')
 
-		# # write to file
-		# # place in a list since write_rows accepts list 
-		# ret = write_rows(args.csv_file, row)
-		# sys.stdout.write('5/5 {}\n'.format(ret))
+		# write to file
+		# place in a list since write_rows accepts list
+		ret = write_rows(args.csv_file, data)
+		sys.stdout.write('5/5 {}\n'.format(ret))
+
 
 if __name__ == '__main__':
 	main()

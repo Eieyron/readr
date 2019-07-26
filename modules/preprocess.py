@@ -1,5 +1,4 @@
 import cv2
-import os
 import numpy as np
 
 # does nothing and only returns the input img if there are no contours found
@@ -7,9 +6,11 @@ import numpy as np
 # src <- to get center of mass from
 # nsize <- size of input image after size normalization
 # lsize <- size of the larger image input image will be centered
+
+
 def center_by_mass(src, nsize=20, lsize=28):
     # do this only if lsize is larger than nsize, duh
-    if (lsize > nsize):
+    if lsize > nsize:
         # normalize input img
         img = reshape_to_square(src, nsize)
 
@@ -17,13 +18,13 @@ def center_by_mass(src, nsize=20, lsize=28):
         img = cv2.bitwise_not(img)
         contours, hierarchy = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
-        if (len(contours) != 0):
+        if len(contours) != 0:
             # get the largest contour, the digit itself
-            c = max(contours, key = cv2.contourArea)
+            c = max(contours, key=cv2.contourArea)
 
             # make a mask and draw the contour on it
             mask = np.zeros(img.shape, np.uint8)
-            cv2.drawContours(mask, [c], -1, (255), -1)
+            cv2.drawContours(mask, [c], -1, 255, -1)
 
             # write it on a new img
             mod = cv2.bitwise_and(img, mask)
@@ -80,9 +81,11 @@ def center_by_mass(src, nsize=20, lsize=28):
 # w, h <- width, height
 # padding <- padding, can be + or -
 # replace_pad <- just repads the image; for replacing border artifacts; only for negative padding
+
+
 def crop_by_origin(src, x, y, w, h, padding=0, replace_pad=False):
     p = padding
-    if (replace_pad == True):
+    if replace_pad:
         b = abs(p)
         img = src[y-p:y+h+p, x-p:x+w+p].copy()
         padded = cv2.copyMakeBorder(img, b, b, b, b, cv2.BORDER_CONSTANT,value=[255,255,255])
@@ -97,13 +100,15 @@ def crop_by_origin(src, x, y, w, h, padding=0, replace_pad=False):
 # params:
 # src <- img to be resized
 # s <- w, h of returned square
-def reshape_to_square(src, s):
-    h, w= src.shape[:2]
 
-    if (w > h):
+
+def reshape_to_square(src, s):
+    h, w = src.shape[:2]
+
+    if w > h:
         p = int((w - h)/2)
         src = cv2.copyMakeBorder(src, p, p, 0, 0, cv2.BORDER_CONSTANT,value=[255,255,255])
-    elif (w < h):
+    elif w < h:
         p = int((h - w)/2)
         src = cv2.copyMakeBorder(src, 0, 0, p, p, cv2.BORDER_CONSTANT,value=[255,255,255])
 
@@ -115,21 +120,23 @@ def reshape_to_square(src, s):
 # params:
 # img <- img to be processed
 # show <- if output of every process should be shown (default=False)
+
+
 def preprocess_image(img, show=False):
-    if (show == True):
+    if show:
         cv2.imshow("original img", img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
     # clear spots that may be highlighted in adapted thresholding
-    _, img = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
-    if (show == True):
+    _, img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+    if show:
         cv2.imshow("img after binary thresholding", img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
     # remove possible shadows (?)
     img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
-    if (show == True):
+    if show:
         cv2.imshow("img after adaptive thresholding", img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
@@ -148,7 +155,7 @@ def preprocess_image(img, show=False):
 
     # remove small black points
     img = cv2.morphologyEx(img, cv2.MORPH_CLOSE, (5,5))
-    if (show == True):
+    if show:
         img = cv2.bitwise_not(img)
         cv2.imshow("img after closing", img)
         cv2.waitKey(0)
