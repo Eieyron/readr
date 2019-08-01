@@ -67,8 +67,8 @@ def get_contours(src, min_ratio=0, max_ratio=1, tolerance_factor=10, show=False)
         x, y, w, h = cv2.boundingRect(contour)
         a = w * h
 
-        if (a <= min_area): continue
-        if (a >= max_area): continue
+        if a <= min_area: continue
+        if a >= max_area: continue
 
         cnts.append(contour)
 

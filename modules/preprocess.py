@@ -1,13 +1,12 @@
 import cv2
 import numpy as np
 
+
 # does nothing and only returns the input img if there are no contours found
 # gets the largest contour, its center of mass, and returns it
 # src <- to get center of mass from
 # nsize <- size of input image after size normalization
 # lsize <- size of the larger image input image will be centered
-
-
 def center_by_mass(src, nsize=20, lsize=28):
     # do this only if lsize is larger than nsize, duh
     if lsize > nsize:
@@ -75,14 +74,13 @@ def center_by_mass(src, nsize=20, lsize=28):
 # blank <- the centered image
 # src <- source image
 
+
 # params:
 # src <- image to be cropped
 # x, y <- origins
 # w, h <- width, height
 # padding <- padding, can be + or -
 # replace_pad <- just repads the image; for replacing border artifacts; only for negative padding
-
-
 def crop_by_origin(src, x, y, w, h, padding=0, replace_pad=False):
     p = padding
     if replace_pad:
@@ -95,13 +93,12 @@ def crop_by_origin(src, x, y, w, h, padding=0, replace_pad=False):
 # returns:
 # img
 
+
 # reshape to square with sides s. 
 # utilizes padding if src is not square to avoid distortion
 # params:
 # src <- img to be resized
 # s <- w, h of returned square
-
-
 def reshape_to_square(src, s):
     h, w = src.shape[:2]
 
@@ -117,11 +114,10 @@ def reshape_to_square(src, s):
 # returns:
 # img
 
+
 # params:
 # img <- img to be processed
 # show <- if output of every process should be shown (default=False)
-
-
 def preprocess_image(img, show=False):
     if show:
         cv2.imshow("original img", img)

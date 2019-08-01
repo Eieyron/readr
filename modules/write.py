@@ -32,7 +32,8 @@ def read_values(paper):
             section[j] = ''.join(field)
 
         # merge multiple non-empty fields
-        paper[i] = [config.field_join[i].join(filter(None, section[x:x+config.form_shape[i]])) for x in range(0, len(section), config.form_shape[i])]
+        paper[i] = [config.field_join[i].join(filter(None, section[x:x+config.form_shape[i]]))
+                    for x in range(0, len(section), config.form_shape[i])]
 
     return paper
 
@@ -64,9 +65,8 @@ def map_values(paper, show=False):
 
     return row
 
+
 # https://stackoverflow.com/a/30292938/7657721
-
-
 def write_rows(file_csv, data, sep=',', show=False):
     data = DataFrame.from_records(data, columns=config.column_names)
     rows = len(data.index)

@@ -36,8 +36,6 @@ def load_models(n=10, show=False):
 
 # preprocess input character to fit into model input
 # character <- img to be preprocessed
-
-
 def preprocess_character(character):
     # invert
     character = cv2.bitwise_not(character)
@@ -51,16 +49,13 @@ def preprocess_character(character):
     character.reshape((1, 28, 28, 1))
 
     return character
-
-
 # returns:
 # character <- preprocessed character
+
 
 # predict input character with input models
 # models <- the models to read the character with
 # character <- img to be recognized
-
-
 def read_character(models, character):
     character = preprocess_character(character)
 
