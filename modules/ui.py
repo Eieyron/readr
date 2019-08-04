@@ -32,13 +32,17 @@ class MainWindow(Frame):
     def __init__(self, parent):
         Frame.__init__(self, parent)
 
-        self.ico_dir = PhotoImage(file="./assets/dir_alt.png")
-        self.ico_mul = PhotoImage(file="./assets/mul_alt.png")
-        self.ico_snl = PhotoImage(file="./assets/snl_alt.png")
+        self.ico_dir_d = PhotoImage(file="./assets/dir_d.png")
+        self.ico_mul_d = PhotoImage(file="./assets/mul_d.png")
+        self.ico_snl_d = PhotoImage(file="./assets/snl_d.png")
+
+        self.ico_dir_h = PhotoImage(file="./assets/dir_h.png")
+        self.ico_mul_h = PhotoImage(file="./assets/mul_h.png")
+        self.ico_snl_h = PhotoImage(file="./assets/snl_h.png")
 
         self.batch_button = Button(
                                    # text='Process image directory',
-                                   image=self.ico_dir,
+                                   image=self.ico_dir_d,
                                    border="0",
                                    # compound="top",
                                    command=self.run_batch,
@@ -51,10 +55,12 @@ class MainWindow(Frame):
                                padx=(18, 18),
                                pady=(18, 18)
                                )
+        self.batch_button.bind("<Enter>", self.on_batch_enter)
+        self.batch_button.bind("<Leave>", self.on_batch_leave)
 
         self.single_button = Button(
                                     # text='Process single image',
-                                    image=self.ico_snl,
+                                    image=self.ico_snl_d,
                                     border="0",
                                     # compound="top",
                                     command=self.run_single,
@@ -67,10 +73,12 @@ class MainWindow(Frame):
                                 padx=(18, 18),
                                 pady=(18, 18)
                                 )
+        self.single_button.bind("<Enter>", self.on_single_enter)
+        self.single_button.bind("<Leave>", self.on_single_leave)
 
         self.mult_button = Button(
                                   # text='Process multiple images',
-                                  image=self.ico_mul,
+                                  image=self.ico_mul_d,
                                   border="0",
                                   # compound="top",
                                   command=self.run_multiple,
@@ -83,6 +91,8 @@ class MainWindow(Frame):
                               padx=(18, 18),
                               pady=(18, 18)
                               )
+        self.mult_button.bind("<Enter>", self.on_mult_enter)
+        self.mult_button.bind("<Leave>", self.on_mult_leave)
 
         self.status = StringVar()
         self.status.set("Ready")
@@ -95,9 +105,56 @@ class MainWindow(Frame):
                                   textvariable=self.status)
         self.status_label.grid(sticky="EW", row=1, columnspan=3)
 
+    def on_batch_enter(self, event):
+        self.status.set("Select a folder containing the document images to be read")
+        self.batch_button.configure(image=self.ico_dir_h)
+
+    def on_batch_leave(self, event):
+        self.status.set("")
+        self.batch_button.configure(image=self.ico_dir_d)
+
+    def on_mult_enter(self, event):
+        self.status.set("Select multiple document images to be read")
+        self.mult_button.configure(image=self.ico_mul_h)
+
+    def on_mult_leave(self, event):
+        self.status.set("")
+        self.mult_button.configure(image=self.ico_mul_d)
+
+    def on_single_enter(self, event):
+        self.status.set("Select a single document image to be read")
+        self.single_button.configure(image=self.ico_snl_h)
+
+    def on_single_leave(self, event):
+        self.status.set("")
+        self.single_button.configure(image=self.ico_snl_d)
+
     def process_batch(self, csv_file, img_dir):
         # process images
         batch = process_batch(img_dir)
+        self.status.set("3/5 Extracted fields from {} image files".format(len(batch)))
+
+        # read and map fields
+        data = []
+        for paper in batch:
+            # read and map fields
+            values = read_values(paper)
+            row = map_values(values)
+            data.append(row)
+
+        self.status.set("4/5 Extracted values from fields")
+
+        # write to file
+        ret = write_rows(csv_file, data)
+        self.status.set("5/5 {}".format(ret))
+
+        return
+
+    def process_multiple(self, csv_file, img_files):
+        batch = []
+        for file in img_files:
+            paper = process_single(file)
+            batch.append(paper)
         self.status.set("3/5 Extracted fields from {} image files".format(len(batch)))
 
         # read and map fields
@@ -134,7 +191,6 @@ class MainWindow(Frame):
 
         return
 
-    # filedialog gets the whole dir string
     def run_batch(self):
         # clear previous values
         self.status.set("")
@@ -169,8 +225,64 @@ class MainWindow(Frame):
         return
 
     def run_multiple(self):
+        # clear previous values
+        self.status.set("")
+        self.csv_file = ''
+        self.img_files = []
+
+        # select multiple files
         self.img_files = list(filedialog.askopenfilenames(initialdir="./", title="Select image files"))
-        print(self.img_files)
+        if len(self.img_files) == 0:
+            self.status.set("Aborted: no image files selected")
+            return
+
+        # filter out invalid files
+        for file in self.img_files:
+            if not (file.endswith('.png') or file.endswith('.jpg')):
+                self.img_files.remove(file)
+                self.status.set("Ignored {}: invalid image file format".format(file))
+
+        if len(self.img_files) == 0:
+            self.status.set("Aborted: no valid image files to read")
+            return
+
+        elif len(self.img_files) == 1:
+            self.status.set("1/5 Successfully loaded image file")
+
+            # look for csv file
+            self.csv_file = filedialog.askopenfilename(initialdir="./", title="Select csv file")
+            if self.csv_file == '':
+                self.status.set("Aborted: no csv file selected")
+                return
+            elif not self.csv_file.endswith('.csv'):
+                self.status.set("Aborted: invalid csv file")
+                return
+
+            self.status.set("2/5 Successfully loaded csv file")
+
+            self.process_single(self.csv_file, self.img_files[0])
+
+            self.status.set("Done")
+            return
+
+        else:
+            self.status.set("1/5 Successfully loaded {} image files".format(len(self.img_files)))
+
+            # look for csv file
+            self.csv_file = filedialog.askopenfilename(initialdir="./", title="Select csv file")
+            if self.csv_file == '':
+                self.status.set("Aborted: no csv file selected")
+                return
+            elif not self.csv_file.endswith('.csv'):
+                self.status.set("Aborted: invalid csv file")
+                return
+
+            self.status.set("2/5 Successfully loaded csv file")
+
+            self.process_multiple(self.csv_file, self.img_files)
+
+            self.status.set("Done")
+            return
 
     def run_single(self):
         # clear previous values
@@ -209,7 +321,6 @@ class MainWindow(Frame):
 def main():
     root = Tk()
     root.title("readr")
-    # root.geometry("200x75")
     root.resizable(0, 0)
     MainWindow(root).grid()
     root.mainloop()

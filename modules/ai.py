@@ -4,9 +4,9 @@ import os
 import pickle
 
 import numpy as np
+import tensorflow as tf
 
 from collections import Counter
-from tensorflow import keras
 
 # suppress all logging from tensorflow
 logging.getLogger('tensorflow').disabled = True
@@ -25,7 +25,7 @@ def load_model_vars():
 def load_models(n=10, show=False):
     models = []
     for i in range(n):
-        model = keras.models.load_model(os.path.join('.', 'models', ('m' + str(i) + 'eF.h5')))
+        model = tf.keras.models.load_model(os.path.join('.', 'models', ('m' + str(i) + 'eF.h5')))
         models.append(model)
         if show:
             print("Model " + str(i) + " loaded")
