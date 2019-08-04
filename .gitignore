@@ -129,4 +129,4 @@ dmypy.json
 # PyInstaller build files and exe
 ./dist
 ./build
-.exe
+*.exe
