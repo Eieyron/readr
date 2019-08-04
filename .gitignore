@@ -125,3 +125,8 @@ dmypy.json
 
 # PyCharm
 # ./idea
+
+# PyInstaller build files and exe
+./dist
+./build
+.exe
