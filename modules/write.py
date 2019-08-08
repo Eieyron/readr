@@ -82,7 +82,7 @@ def write_rows(file_csv, data, sep=',', show=False):
 
     # check if file has mismatched column length
     elif len(data.columns) != len(pd.read_csv(file_csv, nrows=1, sep=sep).columns):
-        ret = "Mismatched column length (data:{}, file:{}); no changes are made to csv file".format(
+        ret = "Mismatched column length; no changes are made to csv file".format(
                 str(len(data.columns)),
                 str(len(pd.read_csv(file_csv, nrows=1, sep=sep).columns)))
 

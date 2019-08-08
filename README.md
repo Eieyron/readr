@@ -4,27 +4,15 @@
 ## About
 A simple document form reader that uses machine learning to read handwritten digits extracted from boxed fields.
 
-## To Do
-* create dist file using pyinstaller
-* require valid `settings.ini`, `format.csv`, `keys.csv`
-* stop program if any values in `settings.ini`, `format.csv`, `keys.csv` is missing or wrong.
-* better looking UI? *(hmm)*
-* ~~selecting multiple files?~~
-* ~~tooltips?~~
-* ~~os-independent functions~~
-* ~~functional UI~~
-* ~~output read data to csv~~
-* ~~implement settings~~
-
 ## Installation
 
 ### Python and PIP
-* install Python 3.6+ and PIP
+* Install Python 3.6.7 and PIP
 ```
 sudo apt update
 sudo apt install python3-dev python3-pip
 ```
-* check versions
+* Check versions
 ```
 python3 --version
 pip3 --version
@@ -35,20 +23,24 @@ Set up a virtual environment to isolate the project's dependencies
 * Install `virtualenv`
 	
 	`sudo pip3 install -U virtualenv`
+	
 * Check
 
 	`virtualenv --version`
+	
 * Create a virtual environment
 
 	`virtualenv -p python3 ./path/to/venv/`
+	
 * Use the virtual environment
 
 	`source ./path/to/venv/bin/activate`
+	
 * Stop using the virtual environment
 
 	`deactivate`
 
-#### Or
+#### Or:
 Since project is required to use Python 3+, we can also use Python 3's `venv` instead:
 * Create a new virtual environment using `venv`
 	
@@ -63,7 +55,7 @@ Since project is required to use Python 3+, we can also use Python 3's `venv` in
     `deactivate`
     
 ### Dependencies
-* For installation of libraries used only
+* For installation of libraries used only _(recommended)_
  
     `pip3 install -r /path/to/requirements.txt`
      
@@ -77,7 +69,7 @@ Since project is required to use Python 3+, we can also use Python 3's `venv` in
 
 ###### In case `pip3` doesn't work or is missing, try `pip` instead.
 
-## Testing the Program
+## Testing the Script
 
 ### Basic
 * Run `main.py`
@@ -123,13 +115,17 @@ The program segments and structures the sheet based on these elements:
 * It can be joined along with fields of the same row in a section to represent decimal values, fractions, dates, etc.
 * Fields are ordered from left-to-right, then top-to-bottom.
 
+#### Character
+* Character is the digits inside the field.
+* Characters are only ordered from left-to-right, as the fields are designed for one row of characters only. 
+
 ### Setup `format.csv` and `keys.csv`
 These files are necessary for the program to know how to segment and structure your new sheet. The file `format.csv`, 
 as mentioned earlier, determines the labels, symbols, number of items and columns the program will extract and use. 
 Meanwhile, `keys.csv` determines the column names or headers that will be written at the top of the csv file,
 and which fields will be considered.
 
-Either edit the default files in `files/` to accommodate the new sheet
+Either edit the default files in `files/` or in `root` directory to accommodate the new sheet
 or create a new one and edit `settings.ini` to point to it. 
 
 Lastly, in `settings.ini`, under `[ORIENTATION]`, 
@@ -152,6 +148,38 @@ as it may slow down the program.
 * Make sure the next images to be read are scanned with the same setup, equipment, and settings 
 so as not to tweak the program again.
 
+## Compiling
+The project can be compiled as is into a redistributable executable file, using PyInstaller. 
+This can make the project available to machines with no existing Python installations and more convenient to users,
+given that the machine where its `exe` file is compiled is similar to the target machine, particularly their OSes.
+
+In the root directory of the project:
+* Generate a `spec` file
+
+```
+pyi-makespec --hidden-import=tensorflow.keras --icon=./assets/icon.ico --windowed --onefile --name readr main.py
+```
+
+* Run PyInstaller on the `spec` file to generate the executable:
+
+```
+pyinstaller --clean readr.spec
+```
+
+* Move the generated `exe` file in `dist/` into a new folder somewhere else. 
+
+* Finally, copy the `models/`, and `assets/` folders. You can then either create two new `csv` files containing
+the format and column names separately, and edit `settings.ini` accordingly to point to it, 
+or just copy the default `format.csv` and `keys.csv` in `files/` to the folder where the generated `exe` file is located.
+Again, don't forget to make sure to edit `settings.ini` to point to these two files.
+
+* Try running the generated `exe` file. If its needed files are found, it will run as intended.
+
+## Recreating the model
+The script to train the model is found in `./train/model.py`. 
+Take note that the script requires `tensorflow=2.0.0a0` to run.
+
 ## Restrictions
 * Do not delete or remove a line in `settings.ini`, `format.csv`, `keys.csv` and any file referenced in `settings.ini`.
 * Scanned image should be upright as much as possible, or should have the top bottom on the viewer's left side.
+* The `csv` files to be written data on must either be empty or always have a header. 
