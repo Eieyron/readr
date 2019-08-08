@@ -291,7 +291,10 @@ class MainWindow(Frame):
 
 def main():
     root = Tk()
-    root.iconbitmap('./assets/icon.ico')
+    try:
+        root.iconbitmap('./assets/icon.ico')
+    except TclError:
+        root.iconphoto(True, PhotoImage(file="./assets/icon.gif"))
     root.title("readr")
     root.resizable(0, 0)
     MainWindow(root).grid()
