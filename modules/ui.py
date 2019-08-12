@@ -217,7 +217,7 @@ class MainWindow(Frame):
         self.img_dir = filedialog.askdirectory(initialdir="./", title="Select directory of image files")
         if self.img_dir == '':
             self.status.set("Aborted: no directory path selected")
-        elif not os.path.isdir(self.img_dir):
+        elif not os.path.isdir(str(self.img_dir)):
             self.status.set("Aborted: invalid directory path")
         else:
             self.status.set("1/5 Successfully loaded directory")
@@ -277,15 +277,15 @@ class MainWindow(Frame):
 
     # called by run_* functions
     def write_data(self):
-        file_csv = filedialog.asksaveasfilename(initialdir="./", title="Save data to", confirmoverwrite=False,
+        self.csv_file = filedialog.asksaveasfilename(initialdir="./", title="Save data to", confirmoverwrite=False,
                                                 filetypes=(("All files", "*.*"), ("CSV files", "*.csv")))
-        if file_csv == '':
+        if self.csv_file == '':
             self.status.set("Aborted: no csv file selected")
-        elif not file_csv.endswith('.csv'):
+        elif not self.csv_file.endswith('.csv'):
             self.status.set("Aborted: invalid csv file")
         else:
             self.status.set("4/5 Successfully loaded csv file")
-            ret = write_rows(file_csv, self.data)
+            ret = write_rows(self.csv_file, self.data)
             self.status.set("5/5 {}".format(ret))
 
 

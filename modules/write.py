@@ -72,7 +72,7 @@ def write_rows(file_csv, data, sep=',', show=False):
     rows = len(data.index)
     # check if file exists
     if not os.path.isfile(file_csv):
-        data.to_csv(file_csv, mode='a', index=False, sep=sep)
+        data.to_csv(file_csv, mode='a', index=False, sep=sep, header=True)
         ret = "Successfully wrote {} row/s to new file".format(rows)
 
     # check if file is empty
