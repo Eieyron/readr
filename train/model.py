@@ -8,13 +8,9 @@ from __future__ import unicode_literals
 
 from tensorflow import keras
 
-import cv2
 import os
-import pathlib
 import pickle
-import shutil
 
-import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 

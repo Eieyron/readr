@@ -127,6 +127,18 @@ def load_config(file_ini='settings.ini'):
 
 def load_settings():
     load_config()
+
+    dir_models = './models/'
+    # if models/ folder does not exist:
+    if not os.path.isdir(dir_models):
+        globals()['file_error'] = dir_models, 'not found'
+    # if models/ is empty
+    elif os.listdir(dir_models)[0:num_models] == []:
+        globals()['file_error'] = dir_models, 'is empty'
+    # if models/ has no valid .h5 py
+    elif [file for file in os.listdir('./models') if file.endswith('.h5')][0:num_models] == []:
+        globals()['file_error'] = dir_models, 'has no valid .h5 file'
+
     if file_error == None:
         get_form_format()
         get_form_keys()

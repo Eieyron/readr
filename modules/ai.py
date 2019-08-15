@@ -20,16 +20,18 @@ def load_model_vars():
 # n <- number of models to be loaded.
 # more accurate but slower if higher
 # max of 10.
-
-
-def load_models(n=10, show=False):
+def load_models(n=1, show=False):
+    model_files = sorted([file for file in os.listdir('./models') if file.endswith('.h5')])[0:n]
+    print(model_files)
     models = []
-    for i in range(n):
-        model = tf.keras.models.load_model(os.path.join('.', 'models', ('m' + str(i) + 'eF.h5')))
+    for model_file in model_files:
+        model = tf.keras.models.load_model('./models/{}'.format(model_file))
         models.append(model)
-        if show:
-            print("Model " + str(i) + " loaded")
-            model.summary()
+
+    if show:
+        for i in range(n):
+            print("Model #{} loaded from file: {}".format(i, model_files[i]))
+            models[i].summary()
 
     return models
 
