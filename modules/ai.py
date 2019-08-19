@@ -22,7 +22,6 @@ def load_model_vars():
 # max of 10.
 def load_models(n=1, show=False):
     model_files = sorted([file for file in os.listdir('./models') if file.endswith('.h5')])[0:n]
-    print(model_files)
     models = []
     for model_file in model_files:
         model = tf.keras.models.load_model('./models/{}'.format(model_file))
