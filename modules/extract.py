@@ -10,6 +10,7 @@ from modules.preprocess import crop_by_origin
 from modules.preprocess import preprocess_image
 
 
+
 # lazy canny
 # https://www.pyimagesearch.com/2015/04/06/zero-parameter-automatic-canny-edge-detection-with-python-and-opencv/
 def auto_canny(image, sigma=0.33):
@@ -48,11 +49,9 @@ def get_contours(src, min_ratio=0, max_ratio=1, tolerance_factor=10, show=False)
     # preprocessing
     mod = src.copy()
     edge = auto_canny(mod)
-    # cv2.imshow("edge after autocanny", edge)
-    # cv2.waitKey(0)
+
     edge = cv2.GaussianBlur(edge, (3, 3), 0)
-    # cv2.imshow("edge after blur", edge)
-    # cv2.waitKey(0)
+
     (contours, _) = cv2.findContours(edge, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # list to return
@@ -79,11 +78,10 @@ def get_contours(src, min_ratio=0, max_ratio=1, tolerance_factor=10, show=False)
     if show:
         for i in range(len(cnts)):
             contour = cnts[i]
-            x, y, w, h = cv2.boundingRect(contour)
-            M = cv2.moments(contour)
-            cX = int(M["m10"] / M["m00"])
-            cY = int(M["m01"] / M["m00"])
-            midpoint = cX, cY
+            m = cv2.moments(contour)
+            c_x = int(m["m10"] / m["m00"])
+            c_y = int(m["m01"] / m["m00"])
+            midpoint = c_x, c_y
 
             cv2.putText(mod, str(i), midpoint, font, 1, 125, 2)
             cv2.drawContours(mod, [contour], 0, 125, 3)
@@ -215,7 +213,7 @@ def process_field(field):
 
         character = crop_by_origin(field, x, y, w, h, padding=config.padding_character,
                                    replace_pad=config.repl_pad_character)
-        character = center_by_mass(character, 20)
+        character = center_by_mass(character, nsize=20, lsize=28)
         field_list.append(character)
 
         if config.show_character:

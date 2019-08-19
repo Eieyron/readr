@@ -30,9 +30,13 @@ def center_by_mass(src, nsize=20, lsize=28):
             mod = cv2.bitwise_not(mod)
 
             # get the center of mass of size normalized image
+            # ZeroDivisionError
             n = cv2.moments(c)
-            nX = int(n["m10"]/n["m00"])
-            nY = int(n["m01"]/n["m00"])
+            if n["m00"] != 0:
+                nX = int(n["m10"]/n["m00"])
+                nY = int(n["m01"]/n["m00"])
+            else:
+                nX, nY = 0, 0
 
             # # draw com of digit
             # cv2.circle(mod, (nX, nY), 1, (125), 1)
@@ -59,7 +63,10 @@ def center_by_mass(src, nsize=20, lsize=28):
             h3 = abs(h1-h2)
             w3 = abs(w1-w1)
 
-            blank[dY:dY+nsize, dX:dX+nsize] = mod[0:h2-h3, 0:w2-w3]
+            try:
+                blank[dY:dY+nsize, dX:dX+nsize] = mod[0:h2-h3, 0:w2-w3]
+            except ValueError:
+                return reshape_to_square(src, lsize)
 
             # # see if it works
             # cv2.circle(blank, (lX, lY), 1, (125), 1)
