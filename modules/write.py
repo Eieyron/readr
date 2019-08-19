@@ -73,12 +73,18 @@ def write_rows(file_csv, data, sep=',', show=False):
     # check if file exists
     if not os.path.isfile(file_csv):
         data.to_csv(file_csv, mode='a', index=False, sep=sep, header=True)
-        ret = "Successfully wrote {} row/s to new file".format(rows)
+        if rows == 1:
+            ret = "Successfully wrote {} row to new file".format(rows)
+        else:
+            ret = "Successfully wrote {} rows to new file".format(rows)
 
     # check if file is empty
     elif os.path.getsize(file_csv) == 0:
         data.to_csv(file_csv, mode='a', index=False, sep=sep, header=True)
-        ret = "Successfully wrote {} row/s to empty file".format(rows)
+        if rows == 1:
+            ret = "Successfully wrote {} row to empty file".format(rows)
+        else:
+            ret = "Successfully wrote {} rows to empty file".format(rows)
 
     # check if file has mismatched column length
     elif len(data.columns) != len(pd.read_csv(file_csv, nrows=1, sep=sep).columns):
@@ -92,7 +98,10 @@ def write_rows(file_csv, data, sep=',', show=False):
 
     else:
         data.to_csv(file_csv, mode='a', index=False, sep=sep, header=False)
-        ret = "Successfully appended {} row/s to existing file".format(rows)
+        if rows == 1:
+            ret = "Successfully appended {} row to existing file".format(rows)
+        else:
+            ret = "Successfully appended {} rows to existing file".format(rows)
 
     return ret
 
