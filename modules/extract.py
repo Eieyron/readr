@@ -10,7 +10,6 @@ from modules.preprocess import crop_by_origin
 from modules.preprocess import preprocess_image
 
 
-
 # lazy canny
 # https://www.pyimagesearch.com/2015/04/06/zero-parameter-automatic-canny-edge-detection-with-python-and-opencv/
 def auto_canny(image, sigma=0.33):
@@ -64,7 +63,7 @@ def get_contours(src, min_ratio=0, max_ratio=1, tolerance_factor=10, show=False)
     for i in range(len(contours)):
         contour = contours[i]
         x, y, w, h = cv2.boundingRect(contour)
-        a = w * h
+        a = w * h   # cv2.contourArea(contour)?
 
         if a <= min_area: continue
         if a >= max_area: continue
@@ -213,13 +212,20 @@ def process_field(field):
 
         character = crop_by_origin(field, x, y, w, h, padding=config.padding_character,
                                    replace_pad=config.repl_pad_character)
-        character = center_by_mass(character, nsize=20, lsize=28)
-        field_list.append(character)
+        try:
+            character = center_by_mass(character, nsize=20, lsize=28)
+            field_list.append(character)
 
-        if config.show_character:
-            cv2.imshow("character", character)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            if config.show_character:
+                cv2.imshow("character", character)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
+
+        except ValueError as err:
+            if config.show_error:
+                cv2.imshow(str(err), character)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
 
     return field_list
 

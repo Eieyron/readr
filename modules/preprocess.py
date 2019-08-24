@@ -33,14 +33,14 @@ def center_by_mass(src, nsize=20, lsize=28):
             # ZeroDivisionError
             n = cv2.moments(c)
             if n["m00"] != 0:
-                nX = int(n["m10"]/n["m00"])
-                nY = int(n["m01"]/n["m00"])
+                n_x = int(n["m10"]/n["m00"])
+                n_y = int(n["m01"]/n["m00"])
             else:
-                nX, nY = 0, 0
+                n_x, n_y = 0, 0
 
             # # draw com of digit
-            # cv2.circle(mod, (nX, nY), 1, (125), 1)
-            # print("nX: "+str(nX)+" nY: "+str(nY))
+            # cv2.circle(mod, (nX, n_y), 1, (125), 1)
+            # print("nX: "+str(nX)+" n_y: "+str(n_y))
 
             # cv2.imshow("mod", mod)
             # cv2.waitKey(0)
@@ -53,8 +53,8 @@ def center_by_mass(src, nsize=20, lsize=28):
             lX = lY = int(sum(np.arange(lsize))//lsize)
 
             # get the difference of two images as offset
-            dX = abs(lX - nX)
-            dY = abs(lY - nY)
+            dX = abs(lX - n_x)
+            dY = abs(lY - n_y)
 
             # edge case when input and recipient shape are for some reason not the same
             # get their shape difference, and crop the input shape starting from the origin
@@ -63,10 +63,7 @@ def center_by_mass(src, nsize=20, lsize=28):
             h3 = abs(h1-h2)
             w3 = abs(w1-w1)
 
-            try:
-                blank[dY:dY+nsize, dX:dX+nsize] = mod[0:h2-h3, 0:w2-w3]
-            except ValueError:
-                return reshape_to_square(src, lsize)
+            blank[dY:dY+nsize, dX:dX+nsize] = mod[0:h2-h3, 0:w2-w3]
 
             # # see if it works
             # cv2.circle(blank, (lX, lY), 1, (125), 1)

@@ -157,7 +157,12 @@ In the root directory of the project:
 * Generate a `spec` file
 
 ```
-pyi-makespec --hidden-import=tensorflow.keras --icon=./assets/icon.ico --windowed --onefile --name readr main.py
+pyi-makespec 
+    --hidden-import=tensorflow.keras 
+    --icon=./assets/icon.ico 
+    --windowed 
+    --onefile 
+    --name readr main.py
 ```
 
 * Run PyInstaller on the `spec` file to generate the executable:

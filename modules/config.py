@@ -118,6 +118,7 @@ def load_config(file_ini='settings.ini'):
             globals()['show_section'] = config.getboolean(sect, 'show_section')
             globals()['show_field'] = config.getboolean(sect, 'show_field')
             globals()['show_character'] = config.getboolean(sect, 'show_character')
+            globals()['show_error'] = config.getboolean(sect, 'show_error')
         except:
             globals()['file_error'] = file_ini, 'has missing or incorrect values'
 
