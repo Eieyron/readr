@@ -31,39 +31,55 @@ def main():
 
     # disables app functions if something's wrong
     if file_error is None:
-        app_menu.batch_button.configure(command=lambda
-                                        at=app_tracker:
-                                        run_batch(at))
-        app_menu.mult_button.configure(command=lambda
-                                       at=app_tracker:
-                                       run_mult(at))
-        app_menu.single_button.configure(command=lambda
-                                         at=app_tracker:
-                                         run_single(at))
-
-        app_menu.batch_button.bind("<Enter>", app_menu.on_batch_enter)
-        app_menu.batch_button.bind("<Leave>", app_menu.on_batch_leave)
-
-        app_menu.mult_button.bind("<Enter>", app_menu.on_mult_enter)
-        app_menu.mult_button.bind("<Leave>", app_menu.on_mult_leave)
-
-        app_menu.single_button.bind("<Enter>", app_menu.on_single_enter)
-        app_menu.single_button.bind("<Leave>", app_menu.on_single_leave)
-
+        enable_menu(app_menu, app_tracker)
         app_tracker.update_status_label("Ready")
 
     else:
-        app_menu.batch_button.configure(state=DISABLED)
-        app_menu.mult_button.configure(state=DISABLED)
-        app_menu.single_button.configure(state=DISABLED)
-
+        disable_menu(app_menu)
         app_tracker.update_status_label("Error: {} {}".format(file_error[0], file_error[1]))
 
     root.mainloop()
 
 
+def disable_menu(app_menu):
+    app_menu.batch_button.configure(state=DISABLED)
+    app_menu.mult_button.configure(state=DISABLED)
+    app_menu.single_button.configure(state=DISABLED)
+
+
+def enable_menu(app_menu, app_tracker):
+    app_menu.batch_button.configure(command=lambda
+        am=app_menu,
+        at=app_tracker:
+        run_batch(am, at),
+                                    state=ACTIVE)
+
+    app_menu.mult_button.configure(command=lambda
+        am=app_menu,
+        at=app_tracker:
+        run_mult(am, at),
+                                   state=ACTIVE)
+
+    app_menu.single_button.configure(command=lambda
+        am=app_menu,
+        at=app_tracker:
+        run_single(am, at),
+                                     state=ACTIVE)
+
+    app_menu.batch_button.bind("<Enter>", app_menu.on_batch_enter)
+    app_menu.batch_button.bind("<Leave>", app_menu.on_batch_leave)
+
+    app_menu.mult_button.bind("<Enter>", app_menu.on_mult_enter)
+    app_menu.mult_button.bind("<Leave>", app_menu.on_mult_leave)
+
+    app_menu.single_button.bind("<Enter>", app_menu.on_single_enter)
+    app_menu.single_button.bind("<Leave>", app_menu.on_single_leave)
+
+
 # functions assigned on click of buttons
-def run_batch(app_tracker):
+def run_batch(app_menu, app_tracker):
+    disable_menu(app_menu)
+
     img_dir = filedialog.askdirectory(initialdir="./", title="Select directory of image files")
 
     app_tracker.show_progress_bar()
@@ -83,8 +99,12 @@ def run_batch(app_tracker):
 
     app_tracker.hide_progress_bar()
 
+    enable_menu(app_menu, app_tracker)
 
-def run_mult(app_tracker):
+
+def run_mult(app_menu, app_tracker):
+    disable_menu(app_menu)
+
     img_files = list(filedialog.askopenfilenames(initialdir="./", title="Select image files",
                                                  filetypes=(("All files", "*.*"), ("JPEG files", "*.jpg"),
                                                             ("PNG files", "*.png"))))
@@ -105,8 +125,12 @@ def run_mult(app_tracker):
 
     app_tracker.hide_progress_bar()
 
+    enable_menu(app_menu, app_tracker)
 
-def run_single(app_tracker):
+
+def run_single(app_menu, app_tracker):
+    disable_menu(app_menu)
+
     img_file = filedialog.askopenfilename(initialdir="./", title="Select image file",
                                           filetypes=(("All files", "*.*"), ("JPEG files", "*.jpg"),
                                                      ("PNG files", "*.png")))
@@ -126,3 +150,5 @@ def run_single(app_tracker):
             write_data(app_tracker, csv_file, data)
 
     app_tracker.hide_progress_bar()
+
+    enable_menu(app_menu, app_tracker)

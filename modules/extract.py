@@ -38,35 +38,43 @@ def get_contour_precedence(contour, cols, tolerance_factor=10):
 
 
 # src <- image to get contours from
+# rectangular_filter <- if False, checks if extracted contours are rectangular
 # min_ratio, max_ratio <- min and max ratio of the stat of the contour to the stat of the src to be considered
 # tolerance_factor <- for ordering contours using get_contour_precedence
 # show <- show processes
-def get_contours(src, min_ratio=0, max_ratio=1, tolerance_factor=10, show=False):
+def get_contours(src, rectangular_filter=True, min_ratio=0, max_ratio=1, tolerance_factor=10, show=False):
     # font for printing text
     font = cv2.FONT_HERSHEY_SIMPLEX
 
     # preprocessing
     mod = src.copy()
     edge = auto_canny(mod)
-
     edge = cv2.GaussianBlur(edge, (3, 3), 0)
 
-    (contours, _) = cv2.findContours(edge, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(edge, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # list to return
     cnts = []
 
+    # compute src_area ratio
     src_area = src.shape[0] * src.shape[1]
     min_area = src_area * min_ratio
     max_area = src_area * max_ratio
 
     for i in range(len(contours)):
         contour = contours[i]
-        x, y, w, h = cv2.boundingRect(contour)
-        a = w * h   # cv2.contourArea(contour)?
+        # x, y, w, h = cv2.boundingRect(contour)
+        # a = w * h
+        a = cv2.contourArea(contour)
 
-        if a <= min_area: continue
-        if a >= max_area: continue
+        if a <= 0: continue
+        elif a <= min_area: continue
+        elif a >= max_area: continue
+        elif rectangular_filter:
+            # check if rectangular
+            p = cv2.arcLength(contour, cv2.isContourConvex(contour))
+            approx = cv2.approxPolyDP(contour, 0.04*p, True)
+            if not len(approx) == 4: continue
 
         cnts.append(contour)
 
@@ -157,7 +165,7 @@ def process_paper(img_paper):
 
 # extract sections from region
 def process_region(region):
-    stats = get_contours(region, min_ratio=config.min_ratio_section, max_ratio=config.max_ratio_section,
+    stats = get_contours(region, rectangular_filter=False, min_ratio=config.min_ratio_section, max_ratio=config.max_ratio_section,
                          tolerance_factor=config.tolerance_section, show=config.show_contours)
 
     region_list = []
@@ -202,7 +210,7 @@ def process_section(section):
 
 # extract characters from fields
 def process_field(field):
-    stats = get_contours(field, min_ratio=config.min_ratio_character, max_ratio=config.max_ratio_character,
+    stats = get_contours(field, rectangular_filter=False, min_ratio=config.min_ratio_character, max_ratio=config.max_ratio_character,
                          tolerance_factor=config.tolerance_character, show=config.show_contours)
 
     field_list = []

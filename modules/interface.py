@@ -19,6 +19,9 @@ def check_batch(app_tracker, img_dir):
     elif not os.path.isdir(str(img_dir)):
         app_tracker.update_status_label("Aborted: invalid directory path")
         return None
+    elif not [file for file in os.listdir(img_dir) if file.endswith(".png") or file.endswith(".jpg")]:
+        app_tracker.update_status_label("Aborted: no valid files found")
+        return None
     else:
         app_tracker.update_status_label("Successfully loaded directory")
         app_tracker.update_progress_bar(10)
@@ -148,7 +151,10 @@ def check_file(app_tracker, csv_file):
 
 
 def write_data(app_tracker, csv_file, data):
-    ret = write_rows(csv_file, data)
+    try:
+        ret = write_rows(csv_file, data)
+    except PermissionError:
+        ret = "Aborted: permission denied"
 
     app_tracker.update_status_label(ret)
     app_tracker.update_progress_bar(40)

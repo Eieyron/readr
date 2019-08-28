@@ -127,26 +127,28 @@ def preprocess_image(img, show=False):
         cv2.imshow("original img", img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
+
     # clear spots that may be highlighted in adapted thresholding
-    _, img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+    _, img = cv2.threshold(img, 159, 255, cv2.THRESH_BINARY)
     if show:
         cv2.imshow("img after binary thresholding", img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
-    # remove possible shadows (?)
-    img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
-    if show:
-        cv2.imshow("img after adaptive thresholding", img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+    # uncomment this
+    # # remove possible shadows
+    # img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+    # if show:
+    #     cv2.imshow("img after adaptive thresholding", img)
+    #     cv2.waitKey(0)
+    #     cv2.destroyAllWindows()
 
     img = cv2.bitwise_not(img)
 
-    # too destructive    
+    # # too destructive
     # # remove "holes"
     # img = cv2.morphologyEx(img, cv2.MORPH_OPEN, (5,5))
-    # if (show == True):
+    # if show:
     #     img = cv2.bitwise_not(img)
     #     cv2.imshow("img after opening", img)
     #     cv2.waitKey(0)
@@ -154,7 +156,7 @@ def preprocess_image(img, show=False):
     #     img = cv2.bitwise_not(img)
 
     # remove small black points
-    img = cv2.morphologyEx(img, cv2.MORPH_CLOSE, (5,5))
+    img = cv2.morphologyEx(img, cv2.MORPH_CLOSE, (5, 5))
     if show:
         img = cv2.bitwise_not(img)
         cv2.imshow("img after closing", img)
