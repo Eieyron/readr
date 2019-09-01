@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+from modules.misc import write_img
 
 # does nothing and only returns the input img if there are no contours found
 # gets the largest contour, its center of mass, and returns it
@@ -128,6 +129,8 @@ def preprocess_image(img, show=False):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
+    write_img(img, "orimg")
+
     # clear spots that may be highlighted in adapted thresholding
     _, img = cv2.threshold(img, 159, 255, cv2.THRESH_BINARY)
     if show:
@@ -135,13 +138,17 @@ def preprocess_image(img, show=False):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
+    write_img(img, "btimg")
+
     # uncomment this
-    # # remove possible shadows
-    # img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
-    # if show:
-    #     cv2.imshow("img after adaptive thresholding", img)
-    #     cv2.waitKey(0)
-    #     cv2.destroyAllWindows()
+    # remove possible shadows
+    img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+    if show:
+        cv2.imshow("img after adaptive thresholding", img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+    write_img(img, "atimg")
 
     img = cv2.bitwise_not(img)
 
@@ -165,6 +172,8 @@ def preprocess_image(img, show=False):
         img = cv2.bitwise_not(img)
 
     img = cv2.bitwise_not(img)
+
+    write_img(img, "climg")
 
     return img
 # returns:

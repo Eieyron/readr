@@ -3,9 +3,13 @@ import os
 from modules.config import mean_px
 from modules.config import std_px
 
+from modules.config import translate_data
+
 from modules.extract import process_single
 
 from modules.model import models
+
+from modules.translate import translate_values
 
 from modules.write import read_values
 from modules.write import map_values
@@ -44,6 +48,12 @@ def extract_batch(app_tracker, img_dir):
             values = read_values(paper)
             # map their values
             row = map_values(values)
+
+            # translate row if indicated
+            if translate_data:
+                row = translate_values(row)
+
+            # add to list
             data.append(row)
 
             app_tracker.update_status_label("Extracted data from {}".format(filename))
@@ -94,6 +104,12 @@ def extract_multiple(app_tracker, img_files):
         # map their values
         values = read_values(paper)
         row = map_values(values)
+
+        # translate row if indicated
+        if translate_data:
+            row = translate_values(row)
+
+        # add to list
         data.append(row)
 
         app_tracker.update_status_label("Extracted data from {}".format(file))
@@ -129,6 +145,12 @@ def extract_single(app_tracker, img_file):
     paper = process_single(img_file)
     values = read_values(paper)
     row = map_values(values)
+
+    # translate row if indicated
+    if translate_data:
+        row = translate_values(row)
+
+    # add to list
     data = [row]
 
     app_tracker.update_status_label("Extracted data from {}".format(img_file))

@@ -38,7 +38,7 @@ def read_values(paper):
     return paper
 
 
-def map_values(paper, show=False):
+def map_values(paper, show=True):
     # map fields to number, store in num_field
     # 'A1': 42
     num_field = {}
@@ -60,8 +60,8 @@ def map_values(paper, show=False):
         row.append(num_field.get(item_number, ""))
 
     if show:
-        for i in row:
-            print(i)
+        for item_number in config.item_numbers:
+            print("{}: {}".format(item_number, num_field.get(item_number, "")))
 
     return row
 

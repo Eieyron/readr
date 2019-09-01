@@ -6,6 +6,35 @@ from modules.ai import load_model_vars
 from modules.misc import fix_path
 
 
+def get_form_dict():
+    file = form_dict
+
+    with open(file, newline='') as csvfile:
+        row = list(csv.reader(csvfile, delimiter=','))
+
+        # pop column names row
+        col_names = row.pop(0)
+        # remove index cell
+        col_names.pop(0)
+
+        # transpose remaining cells
+        lst = [list(i) for i in zip(*row)]
+        # pop idx column
+        idx = lst.pop(0)
+
+        # create a dict
+        dct = {}
+        for i in range(len(col_names)):
+            dct[str(col_names[i])] = {}
+            for j in range(len(idx)):
+                if lst[i][j] == '':
+                    dct[str(col_names[i])][str(idx[j])] = None
+                else:
+                    dct[str(col_names[i])][str(idx[j])] = lst[i][j]
+
+        globals()['form_dict'] = dct
+
+
 def get_form_format():
     file = form_format
 
@@ -74,12 +103,17 @@ def load_config(file_ini='settings.ini'):
             globals()['num_models'] = config.getint(sect, 'num_models')
 
             sect = 'FILE'
+            form_dict = fix_path(config.get(sect, 'form_dict'))
+            globals()['form_dict'] = os.path.join('', *form_dict)
 
             form_format = fix_path(config.get(sect, 'form_format'))
             globals()['form_format'] = os.path.join('', *form_format)
 
             form_keys = fix_path(config.get(sect, 'form_keys'))
             globals()['form_keys'] = os.path.join('', *form_keys)
+
+            sect = 'OUTPUT'
+            globals()['translate_data'] = config.getboolean(sect, 'translate_data')
 
             sect = 'ORIENTATION'
             globals()['is_landscape'] = config.getboolean(sect, 'is_landscape')
@@ -141,6 +175,7 @@ def load_settings():
         globals()['file_error'] = dir_models, 'has no valid .h5 file'
 
     if file_error == None:
+        get_form_dict()
         get_form_format()
         get_form_keys()
 

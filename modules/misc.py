@@ -1,4 +1,4 @@
-
+import cv2
 
 # for use with os.path.join
 # fixes hardcoded path strings with /
@@ -12,3 +12,7 @@ def fix_path(str_path):
     return res
 # res <- list to be used with os.path.join
 # os.path.join('',*fix_path(str_path))
+
+
+def write_img(img, name, loc="./debug/"):
+    cv2.imwrite("{}{}.png".format(loc, name), img)

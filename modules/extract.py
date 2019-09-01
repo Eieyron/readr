@@ -5,6 +5,7 @@ import numpy as np
 
 import modules.config as config
 
+from modules.misc import write_img
 from modules.preprocess import center_by_mass
 from modules.preprocess import crop_by_origin
 from modules.preprocess import preprocess_image
@@ -96,6 +97,8 @@ def get_contours(src, rectangular_filter=True, min_ratio=0, max_ratio=1, toleran
         cv2.imshow("detected contours", mod)
         cv2.waitKey(0)
 
+        write_img(mod, "dcimg{}".format(i))
+
     return cnts
 
 
@@ -160,6 +163,8 @@ def process_paper(img_paper):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
+    write_img(region, "rgimg{}{}{}{}{}".format(0, x, y, w, h))
+
     return region_list
 
 
@@ -183,6 +188,8 @@ def process_region(region):
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
+        write_img(section, "scimg{}{}{}{}{}".format(i, x, y, w, h))
+
     return region_list
 
 
@@ -204,6 +211,8 @@ def process_section(section):
             cv2.imshow("field", field)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
+
+        write_img(field, "flimg{}{}{}{}{}".format(i, x, y, w, h))
 
     return section_list
 
@@ -228,6 +237,8 @@ def process_field(field):
                 cv2.imshow("character", character)
                 cv2.waitKey(0)
                 cv2.destroyAllWindows()
+
+            write_img(character, "chimg{}{}{}{}{}".format(i, x, y, w, h))
 
         except ValueError as err:
             if config.show_error:
