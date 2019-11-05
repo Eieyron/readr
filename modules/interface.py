@@ -164,8 +164,10 @@ def check_file(app_tracker, csv_file):
         app_tracker.update_status_label("Aborted: no csv file selected")
         return None
     elif not csv_file.endswith('.csv'):
-        app_tracker.update_status_label("Aborted: invalid csv file")
-        return None
+        # app_tracker.update_status_label("Aborted: invalid csv file")
+        app_tracker.update_status_label("Successfully loaded csv file")
+        app_tracker.update_progress_bar(30)
+        return csv_file + ".csv"
     else:
         app_tracker.update_status_label("Successfully loaded csv file")
         app_tracker.update_progress_bar(30)

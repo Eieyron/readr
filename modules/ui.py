@@ -46,6 +46,15 @@ def disable_menu(app_menu):
     app_menu.mult_button.configure(state=DISABLED)
     app_menu.single_button.configure(state=DISABLED)
 
+    app_menu.batch_button.unbind("<Enter>")
+    app_menu.batch_button.unbind("<Leave>")
+
+    app_menu.mult_button.unbind("<Enter>")
+    app_menu.mult_button.unbind("<Leave>")
+
+    app_menu.single_button.unbind("<Enter>")
+    app_menu.single_button.unbind("<Leave>")
+
 
 def enable_menu(app_menu, app_tracker):
     app_menu.batch_button.configure(command=lambda
