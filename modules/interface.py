@@ -54,7 +54,7 @@ def extract_batch(app_tracker, img_dir):
                 row = translate_values(row)
 
             # add to list
-            data.append(row)
+            data.extend(row)
 
             app_tracker.update_status_label("Extracted data from {}".format(filename))
 
@@ -110,7 +110,7 @@ def extract_multiple(app_tracker, img_files):
             row = translate_values(row)
 
         # add to list
-        data.append(row)
+        data.extend(row)
 
         app_tracker.update_status_label("Extracted data from {}".format(file))
         app_tracker.update_progress_bar(10+((i/len(img_files))*10))
@@ -142,6 +142,7 @@ def check_single(app_tracker, img_file):
 def extract_single(app_tracker, img_file):
     app_tracker.update_status_label("Extracting")
 
+    data = []
     paper = process_single(img_file)
     values = read_values(paper)
     row = map_values(values)
@@ -151,7 +152,7 @@ def extract_single(app_tracker, img_file):
         row = translate_values(row)
 
     # add to list
-    data = [row]
+    data.extend(row)
 
     app_tracker.update_status_label("Extracted data from {}".format(img_file))
     app_tracker.update_progress_bar(20)

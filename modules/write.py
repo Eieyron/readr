@@ -14,7 +14,8 @@ from modules.config import std_px
 
 from modules.model import models
 
-
+# params:
+# paper <- structured nested list of character images from paper
 def read_values(paper):
     for i in range(len(paper)):
         section = paper[i]
@@ -23,47 +24,97 @@ def read_values(paper):
             field = section[j]
 
             for k in range(len(field)):
-                character = field[k]
+                character = field[k]                                    # image of the character
 
                 # read characters
-                field[k] = str(read_character(models, character)[2])
+                field[k] = str(read_character(models, character)[2])    # interpreted character
 
-            # merge into a single string
-            section[j] = ''.join(field)
+            # merge into a single string, the field
+            section[j] = ''.join(field)                                 # ex. "123", ""
 
-        # merge multiple non-empty fields
-        paper[i] = [config.field_join[i].join(filter(None, section[x:x+config.form_shape[i]]))
-                    for x in range(0, len(section), config.form_shape[i])]
+        # merge with separators as rows
+        rows = [''.join(list(sum(zip(section[x:x+config.form_shape[i]], config.field_join[i]+[0]), ())[:-1]))
+                for x in range(0, len(section), config.form_shape[i])]
+
+        # separate rows by comma
+        columns = [row.split(',') for row in rows]
+        paper[i] = [entry for row in columns for entry in row]
 
     return paper
+# returns:
+# paper <- same structured nested list but contains actual characters instead
 
 
+# params:
+# paper <- returned value of read_values
+# show <- prints the mapping if True
 def map_values(paper, show=True):
-    # map fields to number, store in num_field
-    # 'A1': 42
-    num_field = {}
-    for i in range(len(paper)):
-        section = paper[i]
+    # 1 entry per paper means multiple sections
+    # assigns every field to corresponding items as much as possible
+    # spatial and logical constraint
+    if config.entries == 1:
+        # map fields to number, store in num_field
+        # 'A1': 42
+        num_field = {}
+        for i in range(len(paper)):
+            section = paper[i]
 
-        k = config.number_offset[i]
-        for j in range(len(section)):
-            field = section[j]
+            k = config.number_offset[i]
+            for j in range(len(section)):
+                field = section[j]
 
-            item_number = config.form_labels[i] + str(k)
-            num_field[item_number] = field
+                item_number = config.form_labels[i] + str(k)
+                num_field[item_number] = field
 
-            k = k + 1
+                k = k + 1
 
-    # map numbered fields to column names
-    row = []
-    for item_number in config.item_numbers:
-        row.append(num_field.get(item_number, ""))
-
-    if show:
+        # map numbered fields to column names
+        row = []
         for item_number in config.item_numbers:
-            print("{}: {}".format(item_number, num_field.get(item_number, "")))
+            row.append(num_field.get(item_number, ""))
 
-    return row
+        if show:
+            for item_number in config.item_numbers:
+                print("{}: {}".format(item_number, num_field.get(item_number, "")))
+
+        # add one dimension to fit
+        rows = [row]
+
+    # multiple entries assume only one section is used.
+    # a row is an entry.
+    # n number of fields will be assigned to n items m times, where n is config.length, m is config.entries.
+    else:
+        section = paper[0]
+
+        # fold section list by row, as the entries
+        entries = [section[i:i+config.length[0]] for i in range(0, len(section), config.length[0])]
+
+        # loop through the entries
+        rows = []
+        for entry in entries:
+            num_field = {}
+            k = config.number_offset[0]
+            for i in range(len(entry)):
+                field = entry[i]
+
+                item_number = config.form_labels[0] + str(k)
+                num_field[item_number] = field
+
+                k = k + 1
+
+            row = []
+            for item_number in config.item_numbers:
+                row.append(num_field.get(item_number, ""))
+
+            if show:
+                for item_number in config.item_numbers:
+                    print("{}: {}".format(item_number, num_field.get(item_number, "")))
+
+            rows.append(row)
+
+    return rows
+# returns:
+# rows <- for write_rows
 
 
 # https://stackoverflow.com/a/30292938/7657721
@@ -104,4 +155,3 @@ def write_rows(file_csv, data, sep=',', show=False):
             ret = "Successfully appended {} rows to existing file".format(rows)
 
     return ret
-

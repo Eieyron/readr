@@ -1,0 +1,165 @@
+{
+    "format": {
+        "entries": 1,
+        "section": {
+            "list": [
+                {
+                    "label": "S",
+                    "fields_per_row": 1,
+                    "separator": [""],
+                    "first_number_offset": 1,
+                    "length": 20
+                },
+                {
+                    "label": "S",
+                    "fields_per_row": 1,
+                    "separator": [""],
+                    "first_number_offset": 21,
+                    "length": 20
+                },
+                {
+                    "label": "S",
+                    "fields_per_row": 1,
+                    "separator": [""],
+                    "first_number_offset": 41,
+                    "length": 20
+                },
+                {
+                    "label": "F",
+                    "fields_per_row": 2,
+                    "separator": ["."],
+                    "first_number_offset": 1,
+                    "length": 20
+                },
+                {
+                    "label": "D",
+                    "fields_per_row": 3,
+                    "separator": ["-", "-"],
+                    "first_number_offset": 1,
+                    "length": 20
+                },
+                {
+                    "label": "N",
+                    "fields_per_row": 1,
+                    "separator": [""],
+                    "first_number_offset": 1,
+                    "length": 20
+                }
+            ]
+        }
+    },
+    "keys": {
+        "S": [
+            "Anthocyanin coloration of hypocotyl",
+            "Intensity of anthocyanin coloration of hypocotyls",
+            "Cotyledonous leaf color",
+            "Plant growth habit",
+            "Plant branching",
+            "Stem anthocyanin coloration",
+            "Stem intensity of anthocyanin coloration",
+            "Stem pubescence",
+            "Petiole color",
+            "Leaf blade lobing",
+            "Leaf blade tip angle",
+            "Leaf blade color",
+            "Leaf blade intensity of green color",
+            "Leaf blade blistering",
+            "Leaf prickles",
+            "Leaf hairs",
+            "Flower size",
+            "Number of hermaphrodite flowers per inflorescence",
+            "Corolla color",
+            "Intensity of purple color of flower",
+            "Relative style length",
+            "Fruit curvature",
+            "Fruit length/breadth ratio",
+            "Fruit pedicel prickles",
+            "Fruit shape",
+            "General fruit shape",
+            "Fruit apex shape",
+            "Fruit skin color at commercial ripeness",
+            "Fruit skin color distribution at commercial ripeness",
+            "Fruit skin color at physiological ripness",
+            "Fruit patches",
+            "Fruit stripe",
+            "Fruit position",
+            "Fruit calyx prickles",
+            "Creasing of calyx",
+            "Fruit cross-section",
+            "Fruit flesh color",
+            "Fruit flesh density",
+            "Fruit flavor",
+            "Seed color"
+        ],
+        "F": [
+            "Plot size",
+            "Latitude",
+            "Longitude",
+            "Cotyledonous leaf length",
+            "Cotyledonous leaf width",
+            "Cotyledon length/width ratio",
+            "Plant height",
+            "Plant breadth",
+            "Petiole length",
+            "Leaf blade length",
+            "Leaf blade width",
+            "Fruit length",
+            "Fruit breadth",
+            "Fruit pedicel length",
+            "Fruit pedicel thickness",
+            "Seed size",
+            "1000 seed weight"
+        ],
+        "D": [
+            "Sowing date",
+            "Trplting date",
+            "Harvest date",
+            "Date of first flower opening",
+            "First harvest date",
+            "Last harvest date",
+            "Fruiting date"
+        ],
+        "N": [
+            "Plot number",
+            "PHL number",
+            "Number of days to 50% germination",
+            "Number of flowers per inflorescence",
+            "Number of days from sowing until first flower opening ",
+            "Relative fruit calyx length",
+            "Number of locules per fruit ",
+            "Number of fruits per plant"
+        ]
+    },
+    "settings": {
+        "orientation": {
+            "is_landscape": "True"
+        },
+        "region": {
+            "min_ratio": 0.5,
+            "max_ratio": 0.99,
+            "padding": -9,
+            "replace_pad": "False"
+        },
+        "section": {
+            "min_ratio": 0.05,
+            "max_ratio": 0.9,
+            "padding": -11,
+            "replace_pad": "False",
+            "tolerance_factor": 10
+        },
+        "field": {
+            "min_ratio": 0.0001,
+            "max_ratio": 0.1,
+            "padding": 0,
+            "replace_pad": "False",
+            "tolerance_factor": 10
+        },
+        "character": {
+            "min_ratio": 0.005,
+            "max_ratio": 0.5,
+            "padding": 0,
+            "replace_pad": "False",
+            "tolerance_factor": 100
+        }
+    }
+}

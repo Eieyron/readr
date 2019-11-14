@@ -83,17 +83,11 @@ Since project is required to use Python 3+, we can also use Python 3's `venv` in
 
 ### Advanced
 * To change the settings, edit `settings.ini` in root folder.
-* To change the headers or column names when writing to file, 
-    edit `keys.csv` in `files/` using a text editor or spreadsheet.
-	* First row corresponds to labels defined in `format.csv`
-	* Columns under the first row will be written as header or column name, written in order from top to bottom, 
-	then left-to-right where values of the corresponding field will be written under.
-* To change the structure to be constructed of the image, 
-    edit `format.csv` in `files/` using a text editor or spreadsheet
-	* First row corresponds to labels for each section of the document extracted
-	* Second row determines the number of columns per section of the document
-	* Third row determines symbols to use when joining a row of fields for each section.
-	* Fourth row is the first item number for each section
+* To change how the program reads the scanned form, 
+edit the `*.txt` file indicated in `settings.ini` under `[FILE]` and in line `form`,
+or replace it with another one.
+* To check how the program reads the `*.txt` file, run `test.py`. 
+_(Needs a Python installation set up to do this)_
 
 ## Setup for a New Sheet Format
 
@@ -119,17 +113,9 @@ The program segments and structures the sheet based on these elements:
 * Character is the digits inside the field.
 * Characters are only ordered from left-to-right, as the fields are designed for one row of characters only. 
 
-### Setup `format.csv` and `keys.csv`
-These files are necessary for the program to know how to segment and structure your new sheet. The file `format.csv`, 
-as mentioned earlier, determines the labels, symbols, number of items and columns the program will extract and use. 
-Meanwhile, `keys.csv` determines the column names or headers that will be written at the top of the csv file,
-and which fields will be considered.
-
-Either edit the default files in `files/` or in `root` directory to accommodate the new sheet
-or create a new one and edit `settings.ini` to point to it. 
-
-Lastly, in `settings.ini`, under `[ORIENTATION]`, 
-set `is_landscape` to `True` if the sheet is crosswise, and `False` otherwise.  
+### Setup `txt` file
+The `txt` file referenced in `settings.ini` under `[FILE]` and in line `form` 
+determines how the program will understand and structure the form. The `txt` file follows the `JSON` syntax.
 
 ### Tweaking and Troubleshooting
 If the new sheet isn't correctly read or causes errors:
@@ -139,10 +125,10 @@ If the new sheet isn't correctly read or causes errors:
     * Similarly, set any of `show_section`, `show_field`, `show_character` 
     to see what the program detects as a section, field, and character, respectively.
     
-* Try adjusting the values under `[REGION]` in `settings.ini`.
-    * Try lowering `min_ratio` and raising `max_ratio` under `[REGION]` if the image's region is not detected.
+* Try adjusting the values under `settings` in  `*.txt`.
+    * Try lowering `"min_ratio"` and raising `"max_ratio"` under `"region"` if the image's region is not detected.
 
-* If the program now reads the image properly, make sure to set the values under `[DEBUG` to `False` again, 
+* If the program now reads the image properly, make sure to set the values under `[DEBUG]` to `False` again, 
 as it may slow down the program.
 
 * Make sure the next images to be read are scanned with the same setup, equipment, and settings 
@@ -157,12 +143,7 @@ In the root directory of the project:
 * Generate a `spec` file
 
 ```
-pyi-makespec 
-    --hidden-import=tensorflow.keras 
-    --icon=./assets/icon.ico 
-    --windowed 
-    --onefile 
-    --name readr main.py
+pyi-makespec --hidden-import=tensorflow.keras --icon=./assets/icon.ico --windowed --onefile --name readr main.py
 ```
 
 * Run PyInstaller on the `spec` file to generate the executable:
@@ -175,7 +156,7 @@ pyinstaller --clean readr.spec
 
 * Finally, copy the `models/`, and `assets/` folders. You can then either create two new `csv` files containing
 the format and column names separately, and edit `settings.ini` accordingly to point to it, 
-or just copy the default `format.csv` and `keys.csv` in `files/` to the folder where the generated `exe` file is located.
+or just copy the default `*.txt` in `files/` to the folder where the generated `exe` file is located.
 Again, don't forget to make sure to edit `settings.ini` to point to these two files.
 
 * Try running the generated `exe` file. If its needed files are found, it will run as intended.
@@ -185,6 +166,6 @@ The script to train the model is found in `./train/model.py`.
 Take note that the script requires `tensorflow=2.0.0a0` to run.
 
 ## Restrictions
-* Do not delete or remove a line in `settings.ini`, `format.csv`, `keys.csv` and any file referenced in `settings.ini`.
+* Do not delete or remove a line in `settings.ini`, `*.txt` and any file referenced in `settings.ini`.
 * Scanned image should be upright as much as possible, or should have the top bottom on the viewer's left side.
 * The `csv` files to be written data on must either be empty or always have a header. 
