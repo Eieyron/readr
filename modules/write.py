@@ -14,6 +14,7 @@ from modules.config import std_px
 
 from modules.model import models
 
+
 # params:
 # paper <- structured nested list of character images from paper
 def read_values(paper):

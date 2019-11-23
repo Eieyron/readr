@@ -20,18 +20,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/settings.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+            <state relative-caret-position="128">
+              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="469">
-                <caret line="170" column="86" selection-start-line="170" selection-start-column="86" selection-end-line="170" selection-end-column="86" />
+              <first_editor relative-caret-position="2416">
+                <caret line="151" column="25" selection-start-line="151" selection-end-line="152" />
               </first_editor>
               <second_editor />
             </state>
@@ -39,78 +39,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
+        <entry file="file://$PROJECT_DIR$/readr.spec">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+            <state relative-caret-position="192">
+              <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/files/form_q7A.txt">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/write.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="113" selection-start-line="113" selection-end-line="113" />
+            <state relative-caret-position="576">
+              <caret line="357" selection-start-line="357" selection-end-line="357" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/to-do.txt">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/transform_perspective.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/interface.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-66">
-              <caret line="144" column="12" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#407#1006#0" />
-                <element signature="e#2226#3040#0" />
-                <element signature="e#4044#4471#0" />
-                <element signature="e#4977#5498#0" />
-                <element signature="e#5550#5748#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="41" column="47" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
+            <state>
+              <caret selection-end-line="50" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -118,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/extract.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="36" column="2" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="77" />
+            <state relative-caret-position="2624">
+              <caret line="178" column="47" selection-start-line="178" selection-start-column="47" selection-end-line="178" selection-end-column="47" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -138,7 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>width=100</find>
       <find>(&quot;Gisha&quot;, 9)</find>
       <find>&quot;Aborted: invalid csv file&quot;</find>
       <find>createModel</find>
@@ -168,6 +120,7 @@
       <find>select</find>
       <find>select_rectangular</find>
       <find>form_dict</find>
+      <find>to_detect</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -176,9 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/pseudoalgo" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/paper" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/paper.tex" />
         <option value="$PROJECT_DIR$/train/model.py" />
         <option value="$PROJECT_DIR$/eval.py" />
         <option value="$PROJECT_DIR$/modules/model.py" />
@@ -208,30 +158,33 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/filter.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/old_get_contours.py" />
         <option value="$PROJECT_DIR$/modules/ai.py" />
-        <option value="$PROJECT_DIR$/modules/preprocess.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/extract.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_4.py" />
         <option value="$PROJECT_DIR$/modules/misc.py" />
         <option value="$PROJECT_DIR$/modules/filter.py" />
-        <option value="$PROJECT_DIR$/modules/extract.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/write.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/config.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/to-do.txt" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/list_test.py" />
-        <option value="$PROJECT_DIR$/files/form_q6.txt" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/modules/interface.py" />
-        <option value="$PROJECT_DIR$/modules/write.py" />
-        <option value="$PROJECT_DIR$/settings.ini" />
-        <option value="$PROJECT_DIR$/modules/config.py" />
-        <option value="$PROJECT_DIR$/files/form_q7A.txt" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/write.py" />
+        <option value="$PROJECT_DIR$/modules/write.py" />
+        <option value="$PROJECT_DIR$/modules/config.py" />
+        <option value="$PROJECT_DIR$/files/form_q7N.txt" />
+        <option value="$PROJECT_DIR$/files/form_q7A.txt" />
+        <option value="$PROJECT_DIR$/files/form_q6.txt" />
+        <option value="$PROJECT_DIR$/files/form_test.txt" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/to-do.txt" />
+        <option value="$PROJECT_DIR$/modules/extract.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/transform_perspective.py" />
+        <option value="$PROJECT_DIR$/settings.ini" />
+        <option value="$PROJECT_DIR$/modules/preprocess.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="676" />
+    <option name="x" value="-7" />
     <option name="width" value="697" />
     <option name="height" value="745" />
   </component>
@@ -243,28 +196,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="readr" type="b2602c69:ProjectViewProjectNode" />
               <item name="readr" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="readr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="readr" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="readr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="readr" type="462c0819:PsiDirectoryNode" />
-              <item name="files" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="readr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="readr" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="readr" type="b2602c69:ProjectViewProjectNode" />
@@ -279,6 +216,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -487,39 +425,39 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21651785" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14732143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3296131" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49925596" weight="0.32263243" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.50074404" weight="0.32744783" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.68699837" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49702382" weight="0.9373997" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.6853933" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32744783" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32744783" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49479166" visible="true" weight="0.52969503" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50595236" side_tool="true" weight="0.2857143" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4940476" visible="true" weight="0.5168539" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50595236" side_tool="true" weight="0.52969503" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.4940476" weight="0.2857143" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21651785" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14732143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3296131" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49925596" weight="0.32263243" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5089286" visible="true" weight="0.28250402" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.6872964" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49702382" weight="0.9518459" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.6853933" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32744783" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32744783" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49479166" weight="0.52969503" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5052083" side_tool="true" weight="0.34510434" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49479166" weight="0.09630819" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49479166" visible="true" weight="0.52969503" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5052083" side_tool="true" weight="0.33224756" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.4940476" weight="0.2857143" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -530,40 +468,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="updated UI to account for missing files, allow users to create new csv files; added text under buttons; uploaded script for training models" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/fail_ui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="203" column="31" selection-start-line="203" selection-start-column="31" selection-end-line="203" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#620#722#0" />
-            <element signature="e#2046#2125#0" />
-            <element signature="e#2174#2212#0" />
-            <element signature="e#8343#8743#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/progressbar_solution2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/progressbar_solution.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-352">
-          <caret line="14" column="49" lean-forward="true" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/old_ui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2875">
@@ -636,9 +540,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dummy_data.py" />
-    <entry file="file://$PROJECT_DIR$/readr.spec">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -725,16 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/preprocess.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="351" column="33" selection-start-line="351" selection-start-column="33" selection-end-line="351" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/windows_requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -761,23 +652,6 @@
           <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/files/test_keys.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/files/keys.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="96" selection-start-line="7" selection-start-column="96" selection-end-line="7" selection-end-column="96" />
-        </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -823,12 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/files/format.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/ai.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="488">
@@ -839,9 +707,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/interface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#407#1006#0" />
+            <element signature="e#2226#3040#0" />
+            <element signature="e#4044#4471#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="39" column="21" lean-forward="true" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/write.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/files/keys.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="96" selection-start-line="7" selection-start-column="96" selection-end-line="7" selection-end-column="96" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor" />
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/files/format.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="1664">
           <caret line="170" selection-start-line="169" selection-end-line="170" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
@@ -849,110 +764,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/write.py">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="68" column="4" selection-start-line="68" selection-end-line="107" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="64">
+          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/files/form_q6.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/files/test_keys.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
+    <entry file="file://$PROJECT_DIR$/files/form_q7N.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/interface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="144" column="12" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#407#1006#0" />
-            <element signature="e#2226#3040#0" />
-            <element signature="e#4044#4471#0" />
-            <element signature="e#4977#5498#0" />
-            <element signature="e#5550#5748#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/write.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="880">
+          <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/to-do.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+          <caret line="3" column="103" selection-start-line="3" selection-start-column="103" selection-end-line="3" selection-end-column="103" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.ini">
+    <entry file="file://$PROJECT_DIR$/files/form_q7A.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        <state relative-caret-position="200">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="41" column="47" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
+        <state relative-caret-position="230">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/files/form_q6.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="150" column="30" selection-start-line="150" selection-start-column="30" selection-end-line="150" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/write.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/files/form_test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/extract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="36" column="2" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="77" />
+        <state relative-caret-position="2624">
+          <caret line="178" column="47" selection-start-line="178" selection-start-column="47" selection-end-line="178" selection-end-column="47" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/files/form_q7A.txt">
+    <entry file="file://$PROJECT_DIR$/readr.spec">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+        <state relative-caret-position="192">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="469">
-            <caret line="170" column="86" selection-start-line="170" selection-start-column="86" selection-end-line="170" selection-end-column="86" />
+          <first_editor relative-caret-position="2416">
+            <caret line="151" column="25" selection-start-line="151" selection-end-line="152" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/transform_perspective.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="50" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/preprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="357" selection-start-line="357" selection-end-line="357" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

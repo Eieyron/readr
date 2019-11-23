@@ -43,11 +43,18 @@ def load_form_attr():
             globals()['column_names'] = column_names
 
             # A1, A2, A3..
+            # get the item numbers only needed
+            # # fuck palitan mo to boi
+            # item_numbers = []
+            # for s in section:
+            #     start = s['first_number_offset']
+            #     stop = start + s['length']
+            #     item_numbers.extend([s['label'] + str(i) for i in range(start, stop)])
+
+            key = form['keys']
             item_numbers = []
-            for s in section:
-                start = s['first_number_offset']
-                stop = start + s['length']
-                item_numbers.extend([s['label'] + str(i) for i in range(start, stop)])
+            for label in unique_labels:
+                item_numbers.extend([label+str(i+1) for i in range(len(key[label]))])
 
             globals()['item_numbers'] = item_numbers
 

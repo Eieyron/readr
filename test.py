@@ -34,6 +34,7 @@ print("\n")
 
 print("Column Names")
 print(config.column_names)
+print(len(config.column_names))
 print("\n")
 
 print("Item Numbers")

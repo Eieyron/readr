@@ -1,0 +1,213 @@
+{
+    "format": {
+        "entries": 1,
+        "section": {
+            "list": [
+                {
+                    "label": "S",
+                    "fields_per_row": 1,
+                    "separator": [""],
+                    "first_number_offset": 1,
+                    "length": 20
+                },
+                {
+                    "label": "S",
+                    "fields_per_row": 1,
+                    "separator": [""],
+                    "first_number_offset": 21,
+                    "length": 20
+                },
+                {
+                    "label": "S",
+                    "fields_per_row": 1,
+                    "separator": [""],
+                    "first_number_offset": 41,
+                    "length": 20
+                },
+                {
+                    "label": "F",
+                    "fields_per_row": 2,
+                    "separator": ["."],
+                    "first_number_offset": 1,
+                    "length": 20
+                },
+                {
+                    "label": "D",
+                    "fields_per_row": 3,
+                    "separator": ["-", "-"],
+                    "first_number_offset": 1,
+                    "length": 20
+                },
+                {
+                    "label": "N",
+                    "fields_per_row": 1,
+                    "separator": [""],
+                    "first_number_offset": 1,
+                    "length": 20
+                }
+            ]
+        }
+    },
+    "keys": {
+        "S": [
+            "S1",
+            "S2",
+            "S3",
+            "S4",
+            "S5",
+            "S6",
+            "S7",
+            "S8",
+            "S9",
+            "S10",
+            "S11",
+            "S12",
+            "S13",
+            "S14",
+            "S15",
+            "S16",
+            "S17",
+            "S18",
+            "S19",
+            "S20",
+            "S21",
+            "S22",
+            "S23",
+            "S24",
+            "S25",
+            "S26",
+            "S27",
+            "S28",
+            "S29",
+            "S30",
+            "S31",
+            "S32",
+            "S33",
+            "S34",
+            "S35",
+            "S36",
+            "S37",
+            "S38",
+            "S39",
+            "S40",
+            "S41",
+            "S42",
+            "S43",
+            "S44",
+            "S45",
+            "S46",
+            "S47",
+            "S48",
+            "S49",
+            "S50",
+            "S51",
+            "S52",
+            "S53",
+            "S54",
+            "S55",
+            "S56",
+            "S57",
+            "S58",
+            "S59",
+            "S60"
+        ],
+        "F": [
+            "F1",
+            "F2",
+            "F3",
+            "F4",
+            "F5",
+            "F6",
+            "F7",
+            "F8",
+            "F9",
+            "F10",
+            "F11",
+            "F12",
+            "F13",
+            "F14",
+            "F15",
+            "F16",
+            "F17",
+            "F18",
+            "F19",
+            "F20"
+        ],
+        "D": [
+            "D1",
+            "D2",
+            "D3",
+            "D4",
+            "D5",
+            "D6",
+            "D7",
+            "D8",
+            "D9",
+            "D10",
+            "D11",
+            "D12",
+            "D13",
+            "D14",
+            "D15",
+            "D16",
+            "D17",
+            "D18",
+            "D19",
+            "D20"
+        ],
+        "N": [
+            "N1",
+            "N2",
+            "N3",
+            "N4",
+            "N5",
+            "N6",
+            "N7",
+            "N8",
+            "N9",
+            "N10",
+            "N11",
+            "N12",
+            "N13",
+            "N14",
+            "N15",
+            "N16",
+            "N17",
+            "N18",
+            "N19",
+            "N20"
+        ]
+    },
+    "settings": {
+        "orientation": {
+            "is_landscape": "True"
+        },
+        "region": {
+            "min_ratio": 0.5,
+            "max_ratio": 0.99,
+            "padding": -9,
+            "replace_pad": "False"
+        },
+        "section": {
+            "min_ratio": 0.05,
+            "max_ratio": 0.9,
+            "padding": -11,
+            "replace_pad": "False",
+            "tolerance_factor": 100
+        },
+        "field": {
+            "min_ratio": 0.004,
+            "max_ratio": 0.1,
+            "padding": 0,
+            "replace_pad": "False",
+            "tolerance_factor": 10
+        },
+        "character": {
+            "min_ratio": 0.005,
+            "max_ratio": 0.5,
+            "padding": 0,
+            "replace_pad": "False",
+            "tolerance_factor": 100
+        }
+    }
+}

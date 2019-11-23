@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 
+import modules.config as config
+
 from modules.misc import write_img
 
 
@@ -335,12 +337,21 @@ def transform_perspective(img, corners):
     # find perspective transform matrix
     matrix = cv2.getPerspectiveTransform(ordered_corners, dimensions)
 
-    # get the transformed image
+    # get the transformed image,
+    # should be its right side up is facing to the right,
+    # height = img.shape[0] > width = img.shape[1]
     warped = cv2.warpPerspective(img, matrix, (width, height))
 
     # rotate the transformed image
-    warped = cv2.transpose(warped)
-    warped = cv2.flip(warped, 0)
+    # rotate counter-clockwise once if landscape and length is greater than height
+    # so that the fields to be extracted and read are right side up
+    # skip rotating if it's already right side up for some reason.
+    if (warped.shape[0] > warped.shape[1]) and config.is_landscape:
+        warped = cv2.transpose(warped)
+        warped = cv2.flip(warped, 0)
+    elif (warped.shape[0] < warped.shape[1]) and not config.is_landscape:
+        warped = cv2.transpose(warped)
+        warped = cv2.flip(warped, 0)
 
     return warped
 

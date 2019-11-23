@@ -145,10 +145,10 @@
             "max_ratio": 0.9,
             "padding": -11,
             "replace_pad": "False",
-            "tolerance_factor": 10
+            "tolerance_factor": 100
         },
         "field": {
-            "min_ratio": 0.0001,
+            "min_ratio": 0.004,
             "max_ratio": 0.1,
             "padding": 0,
             "replace_pad": "False",

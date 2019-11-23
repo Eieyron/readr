@@ -177,6 +177,11 @@ def process_paper(img_paper):
     # use perspective transform
     p = cv2.arcLength(stat, True)
     warped = transform_perspective(paper, cv2.approxPolyDP(stat, 0.05*p, True))
+
+    # cv2.imshow("warped", warped)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
     region = crop_by_origin(warped, 0, 0, warped.shape[1], warped.shape[0],
                             padding=config.padding_region, replace_pad=config.repl_pad_region)
 
@@ -238,23 +243,24 @@ def process_region(region):
         section = crop_by_origin(region, x, y, w, h, padding=config.padding_section,
                                  replace_pad=config.repl_pad_section)
 
-        # extract fields from section
-        section_list = process_section(section)
-        region_list.append(section_list)
+        if i < len(config.form_shape):
+            # extract fields from section
+            section_list = process_section(section, config.form_shape[i])
+            region_list.append(section_list)
 
-        # show extracted sections
-        if config.show_section:
-            cv2.imshow("section", section)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            # show extracted sections
+            if config.show_section:
+                cv2.imshow("section", section)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
 
-        write_img(section, "scimg{}_{}_{}_{}_{}_{}_{}_{}".format(3, i, region.shape[0], region.shape[1], x, y, w, h))
+            write_img(section, "scimg{}_{}_{}_{}_{}_{}_{}_{}".format(3, i, region.shape[0], region.shape[1], x, y, w, h))
 
     return region_list
 
 
 # extract fields from sections
-def process_section(section):
+def process_section(section, row_length):
     # preprocessing
     # put image processing operations exclusive to this phase here
     # copy the original image, use it to do the operations,
@@ -288,7 +294,14 @@ def process_section(section):
     stats = select_rectangular(stats)[0]
 
     # sort contours
+    # sort from top to bottom
     stats = sort_contours(stats, section.shape[1], config.tolerance_field)
+    # sort from left to right
+    temp = []
+    for i in range(0, len(stats), row_length):
+        temp.extend(sort_contours(stats[i:i+row_length], section.shape[1], 100))
+    # print("Stats: {}, Temp: {}".format(len(stats), len(temp)))
+    stats = temp
 
     # show detected contours
     mod = draw_detected_contours(section, stats)
