@@ -1,5 +1,6 @@
 from tkinter import *
 
+from modules.config import file_form
 
 class AppMenu(Frame):
     def __init__(self, parent, progress_bar, status_label):
@@ -46,7 +47,7 @@ class AppMenu(Frame):
         self._batch_button.configure(image=self.ico_dir_h)
 
     def on_batch_leave(self, event):
-        self.status_label.configure(text="")
+        self.status_label.configure(text="Preset \"{}\" loaded. Ready".format(file_form))
         self._batch_button.configure(image=self.ico_dir_d)
 
     def on_mult_enter(self, event):
@@ -54,7 +55,7 @@ class AppMenu(Frame):
         self._mult_button.configure(image=self.ico_mul_h)
 
     def on_mult_leave(self, event):
-        self.status_label.configure(text="")
+        self.status_label.configure(text="Preset \"{}\" loaded. Ready".format(file_form))
         self._mult_button.configure(image=self.ico_mul_d)
 
     def on_single_enter(self, event):
@@ -62,7 +63,7 @@ class AppMenu(Frame):
         self._single_button.configure(image=self.ico_snl_h)
 
     def on_single_leave(self, event):
-        self.status_label.configure(text="")
+        self.status_label.configure(text="Preset \"{}\" loaded. Ready".format(file_form))
         self._single_button.configure(image=self.ico_snl_d)
 
     @property

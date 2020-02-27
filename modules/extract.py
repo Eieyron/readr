@@ -109,6 +109,7 @@ def get_contours(src, min_ratio=0, max_ratio=1, retr_mode=cv2.RETR_EXTERNAL):
 
 
 # fn to process a whole dir of doc
+# unused by actual app
 # params:
 # dir_batch <- folder where the batch of img are stored
 def process_batch(dir_batch):

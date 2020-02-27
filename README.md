@@ -154,9 +154,8 @@ pyinstaller --clean readr.spec
 
 * Move the generated `exe` file in `dist/` into a new folder somewhere else. 
 
-* Finally, copy the `models/`, and `assets/` folders. You can then either create two new `csv` files containing
-the format and column names separately, and edit `settings.ini` accordingly to point to it, 
-or just copy the default `*.txt` in `files/` to the folder where the generated `exe` file is located.
+* Finally, copy the `models/`, and `assets/` folders. Copy the default `*.txt` in `files/` to the folder where the 
+generated `exe` file is located, and edit `settings.ini` accordingly to point to it.
 Again, don't forget to make sure to edit `settings.ini` to point to these two files.
 
 * Try running the generated `exe` file. If its needed files are found, it will run as intended.

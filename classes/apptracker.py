@@ -14,6 +14,9 @@ class AppTracker(Frame):
         self._progress_bar = Progressbar(parent, maximum=40, mode='determinate', orient="horizontal")
         self._loading_bar = Progressbar(parent, maximum=40, mode='indeterminate', orient="horizontal")
 
+        # self._preset_button = Button(parent, border=0, font=("Gisha", 8), text="Change preset file..")
+        # self._preset_button.grid(sticky="EW", row=1, rowspan=1, column=2, columnspan=1)
+
     @property
     def loading_bar(self):
         return self._loading_bar
@@ -25,6 +28,10 @@ class AppTracker(Frame):
     @property
     def status_label(self):
         return self._status_label
+
+    # @property
+    # def preset_button(self):
+    #     return self._preset_button
 
     def show_loading_bar(self):
         self._loading_bar.grid(sticky="EW", row=1, rowspan=1, column=2, columnspan=1)

@@ -1,5 +1,7 @@
 import os
 
+from tkinter.messagebox import showinfo
+
 from modules.config import mean_px
 from modules.config import std_px
 
@@ -33,38 +35,66 @@ def check_batch(app_tracker, img_dir):
 
 
 def extract_batch(app_tracker, img_dir):
-    app_tracker.update_status_label("Extracting")
+    app_tracker.update_status_label("Extracting. Please wait...")
 
     batch_list = os.listdir(img_dir)
     data = []
+    skipped_imgs=[]
     i = 1
     for filename in batch_list:
         # extract fields from paper
         img_filename = os.path.join(img_dir, filename)
-        paper = process_single(img_filename)
 
-        if paper is not None:
-            # read fields
-            values = read_values(paper)
-            # map their values
-            row = map_values(values)
+        try:
+            # attempt to read fields of image
+            paper = process_single(img_filename)
 
-            # translate row if indicated
-            if translate_data:
-                row = translate_values(row)
+            # paper is None if it's not an image..
+            if paper is not None:
+                # read fields
+                values = read_values(paper)
+                # map their values
+                row = map_values(values)
 
-            # add to list
-            data.extend(row)
+                # translate row if indicated
+                if translate_data:
+                    row = translate_values(row)
 
-            app_tracker.update_status_label("Extracted data from {}".format(filename))
+                # add to list
+                data.extend(row)
+
+                app_tracker.update_status_label("Extracted data from {}".format(filename))
+
+        # only error noticed so far..
+        # happens when an image does not fit the format of the data sheet
+        # some still goes by though, read incorrectly
+        except ValueError:
+            ret = "Skipped: incompatible image file: {}".format(filename)
+            app_tracker.update_status_label(ret)
+            skipped_imgs.append(filename)
+        # catch unknown errors
+        except Exception:
+            ret = "Skipped: unknown error on image file: {}".format(filename)
+            app_tracker.update_status_label(ret)
+            skipped_imgs.append(filename)
 
         app_tracker.update_progress_bar(10+((i/len(batch_list))*10))
         i = i + 1
 
-    if len(data) == 1:
+    if len(skipped_imgs) > 0:
+        skipped_msg = "The following files are skipped due to incompatibility:\n" + "\n".join(skipped_imgs)
+        showinfo("Incompatible files", skipped_msg)
+
+    if len(data) == 0:
+        app_tracker.update_status_label("Aborted: no valid image file in directory")
+        app_tracker.update_progress_bar(20)
+        return None
+
+    elif len(data) == 1:
         app_tracker.update_status_label("Extracted data from image file")
         app_tracker.update_progress_bar(20)
         return data
+
     else:
         app_tracker.update_status_label("Extracted data from {} image files".format(len(data)))
         app_tracker.update_progress_bar(20)
@@ -94,32 +124,60 @@ def check_multiple(app_tracker, img_files):
 
 
 def extract_multiple(app_tracker, img_files):
-    app_tracker.update_status_label("Extracting")
+    app_tracker.update_status_label("Extracting. Please wait...")
 
     data = []
+    skipped_imgs = []
     i = 1
     for file in img_files:
-        # read fields
-        paper = process_single(file)
-        # map their values
-        values = read_values(paper)
-        row = map_values(values)
+        try:
+            # attempt to read fields of image
+            paper = process_single(file)
 
-        # translate row if indicated
-        if translate_data:
-            row = translate_values(row)
+            if paper is not None:
+                # map their values
+                values = read_values(paper)
+                row = map_values(values)
 
-        # add to list
-        data.extend(row)
+                # translate row if indicated
+                if translate_data:
+                    row = translate_values(row)
 
-        app_tracker.update_status_label("Extracted data from {}".format(file))
+                # add to list
+                data.extend(row)
+
+                app_tracker.update_status_label("Extracted data from {}".format(file))
+
+        # only error noticed so far..
+        # happens when an image does not fit the format of the data sheet
+        # some still goes by though, read incorrectly
+        except ValueError:
+            ret = "Aborted: incompatible image file: {}".format(os.path.basename(file))
+            app_tracker.update_status_label(ret)
+            skipped_imgs.append(os.path.basename(file))
+        # catch unknown errors
+        except Exception:
+            ret = "Aborted: unknown error on image file: {}".format(os.path.basename(file))
+            app_tracker.update_status_label(ret)
+            skipped_imgs.append(os.path.basename(file))
+
         app_tracker.update_progress_bar(10+((i/len(img_files))*10))
         i = i + 1
 
-    if len(data) == 1:
+    if len(skipped_imgs) > 0:
+        skipped_msg = "The following files are skipped due to incompatibility:\n" + "\n".join(skipped_imgs)
+        showinfo("Incompatible files", skipped_msg)
+
+    if len(data) == 0:
+        app_tracker.update_status_label("Aborted: invalid image files")
+        app_tracker.update_progress_bar(20)
+        return None
+
+    elif len(data) == 1:
         app_tracker.update_status_label("Extracted data from image file")
         app_tracker.update_progress_bar(20)
         return data
+
     else:
         app_tracker.update_status_label("Extracted data from {} image files".format(len(data)))
         app_tracker.update_progress_bar(20)
@@ -140,24 +198,37 @@ def check_single(app_tracker, img_file):
 
 
 def extract_single(app_tracker, img_file):
-    app_tracker.update_status_label("Extracting")
+    app_tracker.update_status_label("Extracting. Please wait...")
 
-    data = []
-    paper = process_single(img_file)
-    values = read_values(paper)
-    row = map_values(values)
+    try:
+        data = []
+        paper = process_single(img_file)
+        values = read_values(paper)
+        row = map_values(values)
 
-    # translate row if indicated
-    if translate_data:
-        row = translate_values(row)
+        # translate row if indicated
+        if translate_data:
+            row = translate_values(row)
 
-    # add to list
-    data.extend(row)
+        # add to list
+        data.extend(row)
 
-    app_tracker.update_status_label("Extracted data from {}".format(img_file))
-    app_tracker.update_progress_bar(20)
+        app_tracker.update_status_label("Extracted data from {}".format(img_file))
+        app_tracker.update_progress_bar(20)
 
-    return data
+        return data
+    # only error noticed so far..
+    # happens when an image does not fit the format of the data sheet
+    # some still goes by though, read incorrectly
+    except ValueError:
+        ret = "Aborted: incompatible image file"
+        app_tracker.update_status_label(ret)
+    # catch unknown errors
+    except Exception:
+        ret = "Aborted: unknown error on image file"
+        app_tracker.update_status_label(ret)
+
+    return None
 
 
 def check_file(app_tracker, csv_file):

@@ -37,7 +37,7 @@
         },
         "section": {
             "min_ratio": 0.5,
-            "max_ratio": 0.9,
+            "max_ratio": 0.99,
             "padding": -11,
             "replace_pad": "False",
             "tolerance_factor": 10

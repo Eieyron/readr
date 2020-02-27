@@ -4,8 +4,10 @@ from tkinter import filedialog
 from classes.appmenu import AppMenu
 from classes.apptracker import AppTracker
 
+from modules.config import load_form_attr
 # needed, ignore unused and missing references errors
 from modules.config import file_error
+from modules.config import file_form
 from modules.config import mean_px
 from modules.config import std_px
 
@@ -29,10 +31,15 @@ def main():
     app_menu = AppMenu(root, app_tracker.progress_bar, app_tracker.status_label)
     app_menu.grid(row=0)
 
+    # app_tracker.preset_button.configure(command=lambda
+    #     am=app_menu,
+    #     at=app_tracker:
+    #     change_preset(am, at))
+
     # disables app functions if something's wrong
     if file_error is None:
         enable_menu(app_menu, app_tracker)
-        app_tracker.update_status_label("Ready")
+        app_tracker.update_status_label("Preset \"{}\" loaded. Ready".format(file_form))
 
     else:
         disable_menu(app_menu)
@@ -98,13 +105,16 @@ def run_batch(app_menu, app_tracker):
     if img_dir is not None:
         data = extract_batch(app_tracker, img_dir)
 
-        csv_file = filedialog.asksaveasfilename(initialdir="./", title="Save data to", confirmoverwrite=False,
-                                                filetypes=(("All files", "*.*"), ("CSV files", "*.csv")))
+        # extract_batch returns None if there's no compatible images to read.
+        # no data needs to be written then
+        if data is not None:
+            csv_file = filedialog.asksaveasfilename(initialdir="./", title="Save data to", confirmoverwrite=False,
+                                                    filetypes=(("All files", "*.*"), ("CSV files", "*.csv")))
 
-        csv_file = check_file(app_tracker, csv_file)
+            csv_file = check_file(app_tracker, csv_file)
 
-        if csv_file is not None:
-            write_data(app_tracker, csv_file, data)
+            if csv_file is not None:
+                write_data(app_tracker, csv_file, data)
 
     app_tracker.hide_progress_bar()
 
@@ -124,13 +134,16 @@ def run_mult(app_menu, app_tracker):
     if img_files is not None:
         data = extract_multiple(app_tracker, img_files)
 
-        csv_file = filedialog.asksaveasfilename(initialdir="./", title="Save data to", confirmoverwrite=False,
-                                                filetypes=(("All files", "*.*"), ("CSV files", "*.csv"),))
+        # extract_mult returns None if there's no compatible images to read.
+        # no data needs to be written then
+        if data is not None:
+            csv_file = filedialog.asksaveasfilename(initialdir="./", title="Save data to", confirmoverwrite=False,
+                                                    filetypes=(("All files", "*.*"), ("CSV files", "*.csv"),))
 
-        csv_file = check_file(app_tracker, csv_file)
+            csv_file = check_file(app_tracker, csv_file)
 
-        if csv_file is not None:
-            write_data(app_tracker, csv_file, data)
+            if csv_file is not None:
+                write_data(app_tracker, csv_file, data)
 
     app_tracker.hide_progress_bar()
 
@@ -150,14 +163,32 @@ def run_single(app_menu, app_tracker):
     if img_file is not None:
         data = extract_single(app_tracker, img_file)
 
-        csv_file = filedialog.asksaveasfilename(initialdir="./", title="Save data to", confirmoverwrite=False,
-                                                filetypes=(("All files", "*.*"), ("CSV files", "*.csv")))
+        # extract_single returns None if there's no compatible images to read.
+        # no data needs to be written then
+        if data is not None:
+            csv_file = filedialog.asksaveasfilename(initialdir="./", title="Save data to", confirmoverwrite=False,
+                                                        filetypes=(("All files", "*.*"), ("CSV files", "*.csv")))
 
-        csv_file = check_file(app_tracker, csv_file)
+            csv_file = check_file(app_tracker, csv_file)
 
-        if csv_file is not None:
-            write_data(app_tracker, csv_file, data)
+            # if user input a valid name for the csv file with valid permissions, write
+            if csv_file is not None:
+                write_data(app_tracker, csv_file, data)
 
     app_tracker.hide_progress_bar()
 
     enable_menu(app_menu, app_tracker)
+
+
+# def change_preset(app_menu, app_tracker):
+#     disable_menu(app_menu)
+#
+#     file_form = filedialog.askopenfilename(initialdir="./", title="Select preset file",
+#                                              filetypes=(("TXT files", "*.txt"), ("All files", "*.*")))
+#
+#     if file_form is not None:
+#         globals()['file_form'] = file_form
+#         load_form_attr()
+#         app_tracker.update_status_label("Preset \"{}\" loaded. Ready".format(file_form))
+#
+#     enable_menu(app_menu, app_tracker)
