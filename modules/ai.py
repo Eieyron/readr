@@ -4,7 +4,7 @@ import os
 import pickle
 
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 from collections import Counter
 
@@ -23,6 +23,10 @@ def load_model_vars():
 def load_models(n=1, show=False):
     model_files = sorted([file for file in os.listdir('./models') if file.endswith('.h5')])[0:n]
     models = []
+
+    print([x for x in model_files])
+    print(tf)
+
     for model_file in model_files:
         model = tf.keras.models.load_model('./models/{}'.format(model_file))
         models.append(model)
