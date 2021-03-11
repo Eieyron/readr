@@ -1,4 +1,7 @@
 from tkinter import *
+from PIL import ImageTk as itk, Image
+
+import os
 
 from modules.config import file_form
 
@@ -7,13 +10,13 @@ class AppMenu(Frame):
         Frame.__init__(self, parent)
 
         # load images
-        self.ico_dir_d = PhotoImage(file="./assets/dir_d.png")
-        self.ico_mul_d = PhotoImage(file="./assets/mul_d.png")
-        self.ico_snl_d = PhotoImage(file="./assets/snl_d.png")
+        self.ico_dir_d = itk.PhotoImage(Image.open('./assets/dir_d.png'))
+        self.ico_mul_d = itk.PhotoImage(Image.open('./assets/mul_d.png'))
+        self.ico_snl_d = itk.PhotoImage(Image.open('./assets/snl_d.png'))
 
-        self.ico_dir_h = PhotoImage(file="./assets/dir_h.png")
-        self.ico_mul_h = PhotoImage(file="./assets/mul_h.png")
-        self.ico_snl_h = PhotoImage(file="./assets/snl_h.png")
+        self.ico_dir_h = itk.PhotoImage(Image.open('./assets/dir_h.png'))
+        self.ico_mul_h = itk.PhotoImage(Image.open('./assets/mul_h.png'))
+        self.ico_snl_h = itk.PhotoImage(Image.open('./assets/snl_h.png'))
 
         # button arguments
         width = 120

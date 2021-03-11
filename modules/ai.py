@@ -4,8 +4,8 @@ import os
 import pickle
 
 import numpy as np
-import tensorflow.compat.v1 as tf
-import keras as ks
+import tensorflow as tf
+# import keras as ks
 
 from collections import Counter
 
@@ -29,7 +29,7 @@ def load_models(n=1, show=False):
 
         print(model_file)
 
-        model = ks.models.load_model('./models/{}'.format(model_file))
+        model = tf.keras.models.load_model('./models/{}'.format(model_file))
         models.append(model)
 
     if show:
