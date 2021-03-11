@@ -5,6 +5,7 @@ import pickle
 
 import numpy as np
 import tensorflow.compat.v1 as tf
+import keras as ks
 
 from collections import Counter
 
@@ -24,11 +25,11 @@ def load_models(n=1, show=False):
     model_files = sorted([file for file in os.listdir('./models') if file.endswith('.h5')])[0:n]
     models = []
 
-    print([x for x in model_files])
-    print(tf)
-
     for model_file in model_files:
-        model = tf.keras.models.load_model('./models/{}'.format(model_file))
+
+        print(model_file)
+
+        model = ks.models.load_model('./models/{}'.format(model_file))
         models.append(model)
 
     if show:
